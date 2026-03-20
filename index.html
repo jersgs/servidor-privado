@@ -1,136 +1,136 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrar na Roblox</title>
-    <link rel="icon" type="image/png" href="https://images.rbxcdn.com/241804f5603781f8f3593019f39e830e.ico">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Entrar na Roblox</title>
+<link rel="icon" type="image/png" href="https://images.rbxcdn.com/241804f5603781f8f3593019f39e830e.ico">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
         
-        :root {
-            --bg-main: #191a1f; 
-            --bg-card: #272930;
-            --input-bg: rgba(255, 255, 255, 0.1); 
-            --text-main: #ffffff;
-            --rbx-blue: #0084ff;
-            --rbx-error: #f74b52;
-            --border-grey: #454749;
-            --footer-bg: #121215;
-            --state-hover: rgba(255, 255, 255, 0.1);
-            --radius-main: 8px; /* Ajustado conforme o CSS original */
-        }
+:root {
+--bg-main: #191a1f; 
+--bg-card: #272930;
+--input-bg: rgba(255, 255, 255, 0.1); 
+--text-main: #ffffff;
+--rbx-blue: #0084ff;
+--rbx-error: #f74b52;
+--border-grey: #454749;
+--footer-bg: #121215;
+--state-hover: rgba(255, 255, 255, 0.1);
+--radius-main: 8px; /* Ajustado conforme o CSS original */
+}
 
-        @keyframes fadein-delay { 0% { opacity: 0 } 50% { opacity: 0 } to { opacity: 1 } }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+@keyframes fadein-delay { 0% { opacity: 0 } 50% { opacity: 0 } to { opacity: 1 } }
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+@keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 
-        body, html { 
-            margin: 0; padding: 0; min-height: 100%; 
-            font-family: 'HCo Gotham SSm', sans-serif; 
-            background-color: var(--bg-main); color: var(--text-main); 
-            display: flex; flex-direction: column; overflow-x: hidden;
-            animation: fadein-delay 0.8s ease-in;
-        }
+body, html { 
+margin: 0; padding: 0; min-height: 100%; 
+font-family: 'HCo Gotham SSm', sans-serif; 
+background-color: var(--bg-main); color: var(--text-main); 
+display: flex; flex-direction: column; overflow-x: hidden;
+animation: fadein-delay 0.8s ease-in;
+}
 
-        /* HEADER ORIGINAL STYLE */
-        .roblox-header { width: 100%; height: 44px; background: #232527; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; position: fixed; top: 0; z-index: 100; box-sizing: border-box; border-bottom: 1px solid var(--border-grey); }
-        .header-left { display: flex; align-items: center; gap: 15px; }
-        .roblox-logo { height: 28px; width: 28px; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTcuMDUgNEwyNCA3LjA1IDIwLjk1IDI0IDQgMjAuOTUgNy4wNSA0ek0xMS41IDE2LjVoNXYtNWgtNXY1eiIvPjwvc3ZnPg=='); background-size: contain; background-repeat: no-repeat; }
-        .nav-link { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.9; }
+/* HEADER ORIGINAL STYLE */
+.roblox-header { width: 100%; height: 44px; background: #232527; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; position: fixed; top: 0; z-index: 100; box-sizing: border-box; border-bottom: 1px solid var(--border-grey); }
+.header-left { display: flex; align-items: center; gap: 15px; }
+.roblox-logo { height: 28px; width: 28px; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTcuMDUgNEwyNCA3LjA1IDIwLjk1IDI0IDQgMjAuOTUgNy4wNSA0ek0xMS41IDE2LjVoNXYtNWgtNXY1eiIvPjwvc3ZnPg=='); background-size: contain; background-repeat: no-repeat; }
+.nav-link { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.9; }
 
         /* BACKGROUND 2025 */
-        .main-content { 
-            flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; 
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.rbxcdn.com/a19e4c27a0694a1d0fd5ceb17c978a7a-marketing_bg_05222025.jpg'); 
-            background-size: cover; background-position: center; 
-            padding: 80px 0 40px 0; 
-        }
+.main-content { 
+flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; 
+background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.rbxcdn.com/a19e4c27a0694a1d0fd5ceb17c978a7a-marketing_bg_05222025.jpg'); 
+background-size: cover; background-position: center; 
+padding: 80px 0 40px 0; 
+}
         
-        .login-card { 
-            background-color: var(--bg-card); padding: 40px 30px; 
-            border-radius: var(--radius-main); width: 400px; 
-            text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
-            box-sizing: border-box; position: relative;
+.login-card { 
+background-color: var(--bg-card); padding: 40px 30px; 
+border-radius: var(--radius-main); width: 400px; 
+text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+box-sizing: border-box; position: relative;
             backdrop-filter: blur(10px); /* Toque Premium */
-        }
+}
         
-        /* Ícone de Escudo (Original Script) */
-        .shield-icon {
-            background: url(https://images.rbxcdn.com/2b967a925b86540c43b97878bbfc0632-lock.svg) no-repeat top;
-            background-size: 80px 80px; width: 80px; height: 80px;
-            margin: -10px auto 15px;
-        }
+/* Ícone de Escudo (Original Script) */
+.shield-icon {
+ background: url(https://images.rbxcdn.com/2b967a925b86540c43b97878bbfc0632-lock.svg) no-repeat top;
+ background-size: 80px 80px; width: 80px; height: 80px;
+margin: -10px auto 15px;
+}
 
-        #error-msg { 
-            color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; 
-            display: none; text-align: left; background: rgba(247, 75, 82, 0.1); 
-            padding: 10px; border-radius: 4px; border-left: 3px solid var(--rbx-error); 
-        }
+#error-msg { 
+color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; 
+display: none; text-align: left; background: rgba(247, 75, 82, 0.1); 
+padding: 10px; border-radius: 4px; border-left: 3px solid var(--rbx-error); 
+}
 
-        .input-field { 
-            width: 100%; height: 44px; background-color: var(--input-bg); 
-            border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius-main); 
-            color: #fff; padding: 0 12px; margin-bottom: 12px; 
-            box-sizing: border-box; outline: none; transition: 0.2s; font-size: 15px;
-        }
-        .input-field:focus { border: 1px solid #fff; } /* Segue o script original dark */
-        .input-field-error { border: 1px solid var(--rbx-error) !important; background-color: rgba(247, 75, 82, 0.05) !important; }
+.input-field { 
+width: 100%; height: 44px; background-color: var(--input-bg); 
+border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius-main); 
+color: #fff; padding: 0 12px; margin-bottom: 12px; 
+box-sizing: border-box; outline: none; transition: 0.2s; font-size: 15px;
+}
+.input-field:focus { border: 1px solid #fff; } /* Segue o script original dark */
+.input-field-error { border: 1px solid var(--rbx-error) !important; background-color: rgba(247, 75, 82, 0.05) !important; }
 
-        /* CHECKBOX CUSTOM */
-        .checkbox-container {
-            display: flex; align-items: center; text-align: left; margin: 15px 0;
-            position: relative; cursor: pointer; font-size: 14px; color: #fff;
-            user-select: none;
-        }
-        .checkbox-container input { position: absolute; opacity: 0; left: -9999px; }
-        .checkmark {
-            height: 18px; width: 18px; background-color: #fff;
-            border-radius: 3px; margin-right: 10px; flex-shrink: 0;
-            border: 1px solid #bcbec8; position: relative;
-        }
-        .checkbox-container input:checked ~ .checkmark {
-            background-color: #70a0ff; border-color: #70a0ff;
-            background-image: url(https://images.rbxcdn.com/c3ebbbd60f3655d3a078dcfb632199fd-generic_01312019.svg);
-            background-repeat: no-repeat; background-size: 28px auto; background-position: 0 -602px;
-        }
+ /* CHECKBOX CUSTOM */
+.checkbox-container {
+display: flex; align-items: center; text-align: left; margin: 15px 0;
+position: relative; cursor: pointer; font-size: 14px; color: #fff;
+user-select: none;
+}
+.checkbox-container input { position: absolute; opacity: 0; left: -9999px; }
+.checkmark {
+height: 18px; width: 18px; background-color: #fff;
+border-radius: 3px; margin-right: 10px; flex-shrink: 0;
+border: 1px solid #bcbec8; position: relative;
+}
+.checkbox-container input:checked ~ .checkmark {
+background-color: #70a0ff; border-color: #70a0ff;
+background-image: url(https://images.rbxcdn.com/c3ebbbd60f3655d3a078dcfb632199fd-generic_01312019.svg);
+background-repeat: no-repeat; background-size: 28px auto; background-position: 0 -602px;
+}
 
-        /* BOTÕES FIÉIS AO ORIGINAL */
-        .btn-primary-md { 
-            width: 100%; height: 42px; border: 1px solid #fff; 
-            background: rgba(255,255,255,0.05); color: #fff; 
-            border-radius: var(--radius-main); font-size: 16px; font-weight: 500; 
-            cursor: pointer; margin-top: 10px; transition: 0.2s;
-        }
-        .btn-primary-md:hover { background-color: var(--state-hover); }
+/* BOTÕES FIÉIS AO ORIGINAL */
+.btn-primary-md { 
+width: 100%; height: 42px; border: 1px solid #fff; 
+background: rgba(255,255,255,0.05); color: #fff; 
+border-radius: var(--radius-main); font-size: 16px; font-weight: 500; 
+cursor: pointer; margin-top: 10px; transition: 0.2s;
+}
+.btn-primary-md:hover { background-color: var(--state-hover); }
 
-        .btn-secondary { 
-            width: 100%; height: 42px; background-color: #393b43; 
-            border: none; color: #fff; border-radius: var(--radius-main); 
-            margin-top: 12px; cursor: pointer; font-weight: 500; transition: 0.2s;
-        }
-        .btn-secondary:hover { background-color: #45474d; }
+.btn-secondary { 
+width: 100%; height: 42px; background-color: #393b43; 
+border: none; color: #fff; border-radius: var(--radius-main); 
+margin-top: 12px; cursor: pointer; font-weight: 500; transition: 0.2s;
+}
+.btn-secondary:hover { background-color: #45474d; }
 
-        .divider { border-top: 1px solid var(--border-grey); margin: 20px 0; width: 100%; }
+.divider { border-top: 1px solid var(--border-grey); margin: 20px 0; width: 100%; }
 
-        /* FOOTER */
-        .container-footer { background-color: var(--footer-bg); padding: 40px 0; width: 100%; }
-        .footer-note { font-size: 12px; color: #d5d7dd; opacity: 0.7; text-align: center; }
+/* FOOTER */
+.container-footer { background-color: var(--footer-bg); padding: 40px 0; width: 100%; }
+.footer-note { font-size: 12px; color: #d5d7dd; opacity: 0.7; text-align: center; }
 
-        /* LOADING OVERLAY ORIGINAL SCRIPT STYLE */
-        #loading-overlay { 
-            background-color: rgba(0,0,0,0.7); 
-            position: fixed; inset: 0; z-index: 2000; 
-            display: none; align-items: center; justify-content: center; 
-            backdrop-filter: blur(5px);
-        }
-        .spinner { 
-            width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); 
-            border-top: 4px solid var(--rbx-blue); border-radius: 50%; 
-            animation: spin 0.8s linear infinite; 
-        }
-        .shake { animation: shake 0.2s ease-in-out 0s 2; }
-    </style>
+/* LOADING OVERLAY ORIGINAL SCRIPT STYLE */
+#loading-overlay { 
+background-color: rgba(0,0,0,0.7); 
+position: fixed; inset: 0; z-index: 2000; 
+display: none; align-items: center; justify-content: center; 
+backdrop-filter: blur(5px);
+}
+.spinner { 
+width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); 
+border-top: 4px solid var(--rbx-blue); border-radius: 50%; 
+animation: spin 0.8s linear infinite; 
+}
+.shake { animation: shake 0.2s ease-in-out 0s 2; }
+</style>
 </head>
 <body>
 
