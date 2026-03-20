@@ -18,7 +18,7 @@
             display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* HEADER - SINCRONIZAÇÃO DE ALTURA */
+        /* HEADER */
         .roblox-header {
             width: 100%; height: 44px; background: #232527;
             display: flex; align-items: center; 
@@ -46,7 +46,7 @@
             background-size: contain; background-repeat: no-repeat;
         }
 
-        /* CONTAINER DE LOGIN - AJUSTE DE PESO */
+        /* LOGIN BOX - COR CORRIGIDA PARA O CINZA ESCURO */
         .container { flex: 1; display: flex; align-items: center; justify-content: center; padding-top: 44px; }
         
         .login-box {
@@ -55,36 +55,34 @@
             box-shadow: 0 8px 24px rgba(0,0,0,0.6); z-index: 2; box-sizing: border-box;
         }
 
-        /* TÍTULO - AUMENTADO PARA 32PX (IDÊNTICO AO ORIGINAL) */
-        h1 { color: #fff; font-size: 32px; margin-bottom: 30px; font-weight: 700; letter-spacing: -0.8px; }
+        h1 { color: #fff; font-size: 32px; margin-bottom: 30px; font-weight: 700; letter-spacing: -1.2px; }
         
-        /* INPUTS - AJUSTADOS PARA 48PX DE ALTURA (MÁXIMA ROBUSTEZA) */
+        /* INPUTS - TOM ESCURECIDO (#191B1D) PARA MÁXIMO CONTRASTE */
         input {
-            width: 100%; height: 48px; background-color: #191b1d; border: 1px solid #454749;
+            width: 100%; height: 48px; background-color: #191b1d; border: 1px solid #252728;
             border-radius: 4px; color: #fff; padding: 0 15px; margin-bottom: 12px;
             box-sizing: border-box; font-size: 16px; outline: none;
         }
+        input::placeholder { color: #656667; }
 
-        /* BOTÃO ENTRAR SINCRONIZADO */
+        /* BOTÃO ENTRAR - BORDA FINA BRANCA */
         .btn-entrar {
-            width: 100%; height: 44px; background-color: transparent; border: 1.5px solid #ffffff;
+            width: 100%; height: 44px; background-color: transparent; border: 1px solid #ffffff;
             color: #fff; border-radius: 4px; font-size: 17px; cursor: pointer; margin: 10px 0 20px 0;
-            font-weight: 600; transition: background 0.3s;
+            font-weight: 600;
         }
-        .btn-entrar:hover { background: rgba(255, 255, 255, 0.1); }
 
         .forgot-link {
             color: #fff; text-decoration: none; font-size: 14px; 
             display: block; margin-bottom: 30px; opacity: 0.9;
         }
 
-        /* BOTÕES SECUNDÁRIOS - 48PX PARA ALINHAMENTO COM INPUTS */
+        /* BOTÕES SECUNDÁRIOS - TOM AJUSTADO PARA #4F5153 */
         .btn-secondary {
             width: 100%; height: 48px; background-color: #4f5153; border: none;
             color: #fff; border-radius: 4px; font-size: 15px; margin-bottom: 12px; cursor: pointer;
-            font-weight: 600; transition: background 0.2s;
+            font-weight: 600;
         }
-        .btn-secondary:hover { background-color: #5a5c5e; }
 
         .signup-text { color: #fff; font-size: 15px; margin-top: 35px; }
         .signup-text span { text-decoration: underline; cursor: pointer; font-weight: 600; }
